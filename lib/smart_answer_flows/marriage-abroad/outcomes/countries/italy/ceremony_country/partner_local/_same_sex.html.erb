@@ -53,8 +53,14 @@ They'll issue your CNI within 5 working days of the end of the 7-day notice peri
 
 Your partner can apply to [become a British citizen](/becoming-a-british-citizen/if-your-spouse-is-a-british-citizen) once they’ve lived in the UK for 3 years.
 
-<%= render partial: 'services_and_fees.govspeak.erb',
+<%= render partial: 'services.govspeak.erb',
            locals: { calculator: calculator } %>
+
+<%= render partial: 'fees_payment_currency.govspeak.erb',
+           locals: { calculator: calculator } %>
+
+<%=  render partial: 'fees.govspeak.erb',
+            locals: {calculator: calculator}%>
 
 *[CNI]:certificate of no impediment
 *[FCO]:Foreign &amp; Commonwealth Office

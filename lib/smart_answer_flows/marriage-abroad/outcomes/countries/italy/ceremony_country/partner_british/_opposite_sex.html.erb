@@ -45,8 +45,14 @@ They'll issue your CNI within 5 working days of the end of the 7-day notice peri
 
 ^You don't need to stay in the country while your notice is posted.^
 
-<%= render partial: 'services_and_fees.govspeak.erb',
+<%= render partial: 'services.govspeak.erb',
            locals: { calculator: calculator } %>
+
+<%= render partial: 'fees_payment_currency.govspeak.erb',
+           locals: { calculator: calculator } %>
+
+<%=  render partial: 'fees.govspeak.erb',
+            locals: {calculator: calculator}%>
 
 *[CNI]:certificate of no impediment
 *[FCO]:Foreign &amp; Commonwealth Office
