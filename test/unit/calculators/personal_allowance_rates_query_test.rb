@@ -3,7 +3,7 @@ require_relative "../../test_helper"
 module SmartAnswer::Calculators
   class MarriedCouplesAllowanceRatesQueryTest < ActiveSupport::TestCase
     setup do
-      @query = RatesQuery.from_file('personal_allowance')
+      @query = RatesQuery.from_file("personal_allowance")
     end
 
     should "have all required rates defined for the current fiscal year" do
@@ -14,6 +14,10 @@ module SmartAnswer::Calculators
 
     should "be the latest known walue on 15th April 2116 (fallback)" do
       assert @query.rates(Date.parse("2116-04-15")).personal_allowance.is_a?(Numeric)
+    end
+
+    should "be 11000 on 6th April 2017" do
+      assert_equal 11000, @query.rates(Date.parse("2017-04-06")).personal_allowance
     end
 
     should "be 10600 on 5th April 2016" do

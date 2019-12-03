@@ -3,8 +3,8 @@ module SmartAnswer
     class PartYearProfitTaxCreditsCalculator
       include ActiveModel::Model
 
-      TAX_CREDITS_AWARD_ENDS_EARLIEST_DATE = Date.parse('2015-01-01')
-      TAX_CREDITS_AWARD_ENDS_LATEST_DATE   = Date.parse('2018-12-31')
+      TAX_CREDITS_AWARD_ENDS_EARLIEST_DATE = Date.parse("2015-01-01")
+      TAX_CREDITS_AWARD_ENDS_LATEST_DATE   = Date.parse("2022-12-31")
 
       START_OR_STOP_TRADING_EARLIEST_DATE = TAX_CREDITS_AWARD_ENDS_EARLIEST_DATE - 2.year
       START_OR_STOP_TRADING_LATEST_DATE   = TAX_CREDITS_AWARD_ENDS_LATEST_DATE + 1.years
@@ -25,7 +25,7 @@ module SmartAnswer
       end
 
       def tax_year
-        TaxYear.on(tax_credits_award_ends_on)
+        YearRange.tax_year.including(tax_credits_award_ends_on)
       end
 
       def basis_period

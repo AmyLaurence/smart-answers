@@ -5,7 +5,7 @@
       "title": "British Embassy Ashgabat",
       "format": "Worldwide Organisation",
       "updated_at": "2014-03-13T07:09:26.000+00:00",
-      "web_url": "https://www.gov.uk/government/world/organisations/british-embassy-ashgabat",
+      "web_url": "https://www.gov.uk/world/organisations/british-embassy-ashgabat",
       "details": {
         "slug": "british-embassy-ashgabat"
       },
@@ -15,12 +15,12 @@
           "title": "British Embassy Ashgabat",
           "format": "World Office",
           "updated_at": "2013-07-30T07:45:54.000+01:00",
-          "web_url": "https://www.gov.uk/government/world/organisations/british-embassy-ashgabat/office/british-embassy-ashgabat",
+          "web_url": "https://www.gov.uk/world/organisations/british-embassy-ashgabat/office/british-embassy-ashgabat",
           "details": {
-            "email": "Consular enquiries: consular.ashgabat@fco.gov.uk; Visa enquiries: https://ukvi-international.faq-help.com/",
-            "description": "If you are having difficulty with the main telephone number for the Embassy, please try any of the following: +993 12 363463, 363464, 363466, 363498 or 363474; or +99365 7102033; or call the FCO Switchboard in London on +44 (0)20 7008 1500 for assistance.",
+            "email": "ukembassy.ashgabat@fco.gov.uk  ",
+            "description": "\r\n\r\n\r\n\r\n\r\n\r\n\r\nConsular enquiries: consular.ashgabat@fco.gov.uk\r\nVisa enquiries: https://ukvi-international.faq-help.com/\r\n\r\nIf you are having difficulty with the main telephone number for the Embassy, please try any of the following: +993 12 363463, 363464, 363466, 363498 or 363474; or call the FCO Switchboard in London on +44 (0)20 7008 1500 for assistance.\r\n\r\n",
             "contact_form_url": "",
-            "access_and_opening_times": "<div class=\"govspeak\"><h2 id=\"our-opening-hours\">Our Opening Hours</h2>\n<p>Monday to Thursday 08.30-17.00\nFriday 08.30-15.30\nLunch 12.30-13.30</p>\n\n<h2 id=\"local-holidays\">2016 local holidays</h2>\n\n<p>Friday, 1 January - New Year’s Day </p>\n\n<p>Friday, 19 February - National Flag Day</p>\n\n<p>Monday, 21 March - Novruz Bayram </p>\n\n<p>Friday, 25 March - Good Friday</p>\n\n<p>Monday, 28 March - Easter Monday</p>\n\n<p>Monday, 2 May - May bank holiday</p>\n\n<p>Monday, 30 May - Spring Bank Holiday</p>\n\n<p>Monday, 29 August - Summer Bank Holiday</p>\n\n<p>TBC, September - Kurban Bayram</p>\n\n<p>Thursday, 27 October - Independence Day</p>\n\n<p>Friday, 28 October - Independence Day</p>\n\n<p>Monday, 12 December - Neutrality Day</p>\n\n<p>Monday, 26 December - Boxing Day</p>\n\n<p>Tuesday, 27 December - In lieu of Christmas Day </p>\n</div>",
+            "access_and_opening_times": "<div class=\"govspeak\"><h2 id=\"our-opening-hours\">Our Opening Hours</h2>\n<p>Monday to Thursday 08.30-17.00\nFriday 08.30-15.30\nLunch 12.30-13.30</p>\n\n<h2 id=\"local-holidays\">2018 local holidays</h2>\n\n<table>\n  <tbody>\n    <tr>\n      <td>Monday 1 January</td>\n      <td>New Year’s Day</td>\n    </tr>\n    <tr>\n      <td>Thursday 8 March</td>\n      <td>International Women’s Day</td>\n    </tr>\n    <tr>\n      <td>Wednesday 21 March</td>\n      <td>Novruz Bayram</td>\n    </tr>\n    <tr>\n      <td>Friday 30 March</td>\n      <td>Good Friday</td>\n    </tr>\n    <tr>\n      <td>Monday 2 April</td>\n      <td>Easter Monday</td>\n    </tr>\n    <tr>\n      <td>Monday 7 May</td>\n      <td>May Bank holiday</td>\n    </tr>\n    <tr>\n      <td>Monday 28 May</td>\n      <td>Spring Bank Holiday</td>\n    </tr>\n    <tr>\n      <td>Friday 15 June</td>\n      <td>Oraza Bayram (Eid al-Fitr)</td>\n    </tr>\n    <tr>\n      <td>Thursday 23 August</td>\n      <td>Kurban Bayram (Eid al-Adha)</td>\n    </tr>\n    <tr>\n      <td>Friday 24 August</td>\n      <td>Kurban Bayram (Eid al-Adha)</td>\n    </tr>\n    <tr>\n      <td>Monday 27 August</td>\n      <td>Summer Bank Holiday</td>\n    </tr>\n    <tr>\n      <td>Thursday 27 September</td>\n      <td>Independence Day</td>\n    </tr>\n    <tr>\n      <td>Tuesday 25 December</td>\n      <td>Christmas Day</td>\n    </tr>\n    <tr>\n      <td>Wednesday, 26 December</td>\n      <td>Boxing Day</td>\n    </tr>\n  </tbody>\n</table>\n</div>",
             "type": "Embassy"
           },
           "address": {
@@ -43,7 +43,7 @@
             },
             {
               "label": "Telephone",
-              "number": "+993 12 36 34 62/64 or +99365 71 20 33"
+              "number": "+993 12 36 34 62/64                LineID:ukinturkmenistan"
             }
           ],
           "services": [
@@ -88,23 +88,23 @@
       ]
     },
     {
-      "id": "https://www.gov.uk/api/worldwide-organisations/ukti-turkmenistan",
-      "title": "UK Trade & Investment Turkmenistan",
+      "id": "https://www.gov.uk/api/worldwide-organisations/department-for-international-trade-turkmenistan",
+      "title": "Department for International Trade Turkmenistan",
       "format": "Worldwide Organisation",
-      "updated_at": "2013-07-26T12:02:41.000+01:00",
-      "web_url": "https://www.gov.uk/government/world/organisations/ukti-turkmenistan",
+      "updated_at": "2018-06-22T12:39:02.000+01:00",
+      "web_url": "https://www.gov.uk/world/organisations/department-for-international-trade-turkmenistan",
       "details": {
-        "slug": "ukti-turkmenistan"
+        "slug": "department-for-international-trade-turkmenistan"
       },
       "analytics_identifier": "WO359",
       "offices": {
         "main": {
-          "title": "UK Trade & Investment Turkmenistan",
+          "title": "Department for International Trade Turkmenistan",
           "format": "World Office",
           "updated_at": "2013-07-26T12:00:26.000+01:00",
-          "web_url": "https://www.gov.uk/government/world/organisations/ukti-turkmenistan/office/uk-trade-investment-turkmenistan",
+          "web_url": "https://www.gov.uk/world/organisations/department-for-international-trade-turkmenistan/office/uk-trade-investment-turkmenistan",
           "details": {
-            "email": "Arslan.Penjiyev@mobile.ukti.gov.uk",
+            "email": "Arslan.Garryyev@fco.gov.uk",
             "description": "",
             "contact_form_url": "",
             "access_and_opening_times": "",
@@ -139,10 +139,10 @@
       },
       "sponsors": [
         {
-          "title": "UK Trade & Investment",
-          "web_url": "https://www.gov.uk/government/organisations/uk-trade-investment",
+          "title": "Department for International Trade",
+          "web_url": "https://www.gov.uk/government/organisations/department-for-international-trade",
           "details": {
-            "acronym": "UKTI"
+            "acronym": "DIT"
           }
         }
       ]

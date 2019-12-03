@@ -1,5 +1,7 @@
 module SmartAnswer::Calculators
   class BenefitCapCalculatorConfiguration
+    attr_accessor :exempted_benefits
+
     def weekly_benefit_caps(region = :national)
       data.fetch(:weekly_benefit_caps)[region].with_indifferent_access
     end
@@ -21,6 +23,10 @@ module SmartAnswer::Calculators
 
     def exempt_benefits
       data.fetch(:exempt_benefits)
+    end
+
+    def exempted_benefits?
+      ListValidator.new(exempt_benefits.keys).all_valid?(exempted_benefits)
     end
 
     def questions
@@ -55,7 +61,7 @@ module SmartAnswer::Calculators
   private
 
     def data
-      @data ||= YAML.load_file(Rails.root.join('lib', 'data', 'benefit_cap_data.yml')).with_indifferent_access
+      @data ||= YAML.load_file(Rails.root.join("lib", "data", "benefit_cap_data.yml")).with_indifferent_access
     end
   end
 end

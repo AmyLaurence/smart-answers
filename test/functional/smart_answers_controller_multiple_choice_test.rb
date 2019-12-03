@@ -1,7 +1,7 @@
-require_relative '../test_helper'
-require_relative '../helpers/fixture_flows_helper'
-require_relative '../fixtures/smart_answer_flows/smart-answers-controller-sample-with-multiple-choice-question'
-require_relative 'smart_answers_controller_test_helper'
+require_relative "../test_helper"
+require_relative "../helpers/fixture_flows_helper"
+require_relative "../fixtures/smart_answer_flows/smart-answers-controller-sample-with-multiple-choice-question"
+require_relative "smart_answers_controller_test_helper"
 
 class SmartAnswersControllerMultipleChoiceQuestionTest < ActionController::TestCase
   tests SmartAnswersController
@@ -11,6 +11,7 @@ class SmartAnswersControllerMultipleChoiceQuestionTest < ActionController::TestC
 
   def setup
     setup_fixture_flows
+    stub_smart_answer_in_content_store("smart-answers-controller-sample-with-multiple-choice-question")
   end
 
   def teardown
@@ -18,23 +19,19 @@ class SmartAnswersControllerMultipleChoiceQuestionTest < ActionController::TestC
   end
 
   context "multiple choice question" do
-    context "format=json" do
-      context "no response given" do
-        should "show an error message" do
-          submit_json_response(nil)
-          data = JSON.parse(response.body)
-          doc = Nokogiri::HTML(data['html_fragment'])
-          assert doc.css('.error').size > 0, "#{data['html_fragment']} should contain .error"
-        end
+    context "no response given" do
+      should "show an error message" do
+        submit_response(nil)
+        assert_select ".govuk-error-message"
       end
     end
   end
 
   def submit_response(response = nil, other_params = {})
-    super(response, other_params.merge(id: 'smart-answers-controller-sample-with-multiple-choice-question'))
+    super(response, other_params.merge(id: "smart-answers-controller-sample-with-multiple-choice-question"))
   end
 
   def submit_json_response(response = nil, other_params = {})
-    super(response, other_params.merge(id: 'smart-answers-controller-sample-with-multiple-choice-question'))
+    super(response, other_params.merge(id: "smart-answers-controller-sample-with-multiple-choice-question"))
   end
 end

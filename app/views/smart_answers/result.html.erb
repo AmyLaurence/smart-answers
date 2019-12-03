@@ -1,0 +1,57 @@
+<% content_for :head do %>
+  <meta name="robots" content="noindex">
+<% end %>
+
+<div class="govuk-grid-row">
+  <div id="result-info" class="govuk-grid-column-two-thirds outcome">
+    <%= render 'debug' %>
+    <%= render "govuk_publishing_components/components/title", {
+      title: @presenter.title
+    } %>
+
+    <% outcome = @presenter.current_node %>
+
+    <div class="app-o-answer govspeak-wrapper" data-debug-template-path="<%= outcome.relative_erb_template_path %>">
+      <% if outcome.title.present? %>
+        <%= render "govuk_publishing_components/components/heading", {
+          text: outcome.title
+        } %>
+      <% end %>
+
+      <%= outcome.body %>
+    </div>
+
+    <% if outcome.next_steps.present? %>
+      <div class="app-o-next-steps govspeak-wrapper">
+        <%= render "govuk_publishing_components/components/heading", {
+          text: "Next steps"
+        } %>
+
+        <%= outcome.next_steps %>
+      </div>
+    <% end %>
+
+    <script type="text/javascript">
+      $(function() {
+        var flowName = '<%= @name %>';
+        var page = document.location.pathname;
+        var options = {
+          label: flowName,
+          nonInteraction: true,
+          page: page
+        };
+        GOVUK.analytics.trackEvent('Smart Answer', 'Completed', options);
+      });
+    </script>
+
+    <%= render 'previous_answers' %>
+  </div>
+
+  <% if defined?(@presenter.finished?) and @presenter.finished? %>
+    <div class="govuk-grid-column-one-third govuk-!-margin-top-9">
+      <%= render 'govuk_publishing_components/components/contextual_sidebar', content_item: @content_item %>
+    </div>
+  <% end %>
+</div>
+
+

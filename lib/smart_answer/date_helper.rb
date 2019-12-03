@@ -6,9 +6,13 @@ module SmartAnswer
       end
     end
 
+    def formatted_date(date)
+      date.strftime("%d %B %Y")
+    end
+
     def self.current_day
-      if ENV['RATES_QUERY_DATE']
-        Date.parse(ENV['RATES_QUERY_DATE'])
+      if ENV["RATES_QUERY_DATE"]
+        Date.parse(ENV["RATES_QUERY_DATE"])
       else
         Date.today
       end

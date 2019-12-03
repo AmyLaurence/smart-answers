@@ -1,6 +1,5 @@
-
-require_relative '../test_helper'
-require 'ostruct'
+require_relative "../test_helper"
+require "ostruct"
 
 module SmartAnswer
   class MoneyQuestionTest < ActiveSupport::TestCase
@@ -15,8 +14,8 @@ module SmartAnswer
       end
 
       new_state = q.transition(@initial_state, "123.0")
-      assert_equal Money.new("123.0"), new_state.my_cash
-      assert new_state.my_cash.is_a?(Money)
+      assert_equal SmartAnswer::Money.new("123.0"), new_state.my_cash
+      assert new_state.my_cash.is_a?(SmartAnswer::Money)
     end
 
     test "Invalid input raises InvalidResponse" do

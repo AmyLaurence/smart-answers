@@ -1,14 +1,14 @@
 module SmartAnswer::Calculators
   class MaternityBenefitsCalculator < BirthCalculator
     def test_period
-      period_start = qualifying_week.first - 51.weeks
-      period_end = expected_week.first - 1.day
+      period_start = qualifying_week.begins_on - 51.weeks
+      period_end = expected_week.begins_on - 1.day
       period_start..period_end
     end
 
     def sunday_before_eleven_weeks(due_date)
       result = Date.parse(due_date) - 11.weeks
-      result -= 1 while (result.cwday != 7)
+      result -= 1 while result.cwday != 7
       result
     end
 

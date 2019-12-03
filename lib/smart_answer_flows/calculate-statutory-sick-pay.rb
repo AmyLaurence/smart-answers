@@ -1,8 +1,9 @@
 module SmartAnswer
   class CalculateStatutorySickPayFlow < Flow
     def define
-      content_id "1c676a9e-0424-4ebb-bab8-d8cb8d2fc6f8"
-      name 'calculate-statutory-sick-pay'
+      start_page_content_id "1c676a9e-0424-4ebb-bab8-d8cb8d2fc6f8"
+      flow_content_id "c3ecdaf0-5d37-45d0-bded-d9f1095b60d1"
+      name "calculate-statutory-sick-pay"
 
       status :published
       satisfies_need "100262"
@@ -13,7 +14,7 @@ module SmartAnswer
         option :maternity_allowance
         option :statutory_paternity_pay
         option :statutory_adoption_pay
-        option :additional_statutory_paternity_pay
+        option :shared_parental_leave_and_pay
 
         on_response do |response|
           self.calculator = Calculators::StatutorySickPayCalculator.new
@@ -35,11 +36,7 @@ module SmartAnswer
         option :no
 
         on_response do |response|
-          if response == 'yes'
-            calculator.enough_notice_of_absence = true
-          else
-            calculator.enough_notice_of_absence = false
-          end
+          calculator.enough_notice_of_absence = response == "yes"
         end
 
         next_node do
@@ -54,9 +51,9 @@ module SmartAnswer
 
         next_node do |response|
           case response
-          when 'yes'
+          when "yes"
             outcome :not_regular_schedule # Answer 4
-          when 'no'
+          when "no"
             question :first_sick_day? # Question 4
           end
         end
@@ -65,7 +62,7 @@ module SmartAnswer
       # Question 4
       date_question :first_sick_day? do
         from { Date.new(2011, 1, 1) }
-        to { Date.today.end_of_year }
+        to { Calculators::StatutorySickPayCalculator.year_of_sickness }
 
         on_response do |response|
           calculator.sick_start_date = response
@@ -81,7 +78,7 @@ module SmartAnswer
       # Question 5
       date_question :last_sick_day? do
         from { Date.new(2011, 1, 1) }
-        to { Date.today.end_of_year }
+        to { Calculators::StatutorySickPayCalculator.year_of_sickness }
 
         on_response do |response|
           calculator.sick_end_date = response
@@ -109,9 +106,9 @@ module SmartAnswer
 
         on_response do |response|
           case response
-          when 'yes'
+          when "yes"
             calculator.has_linked_sickness = true
-          when 'no'
+          when "no"
             calculator.has_linked_sickness = false
           end
         end
@@ -128,7 +125,7 @@ module SmartAnswer
       # Question 6.1
       date_question :linked_sickness_start_date? do
         from { Date.new(2010, 1, 1) }
-        to { Date.today.end_of_year }
+        to { Calculators::StatutorySickPayCalculator.year_of_sickness }
 
         on_response do |response|
           calculator.linked_sickness_start_date = response
@@ -148,7 +145,7 @@ module SmartAnswer
       # Question 6.2
       date_question :linked_sickness_end_date? do
         from { Date.new(2010, 1, 1) }
-        to { Date.today.end_of_year }
+        to { Calculators::StatutorySickPayCalculator.year_of_sickness }
 
         on_response do |response|
           calculator.linked_sickness_end_date = response
@@ -222,7 +219,7 @@ module SmartAnswer
       # Question 8
       date_question :last_payday_before_sickness? do
         from { Date.new(2010, 1, 1) }
-        to { Date.today.end_of_year }
+        to { Calculators::StatutorySickPayCalculator.year_of_sickness }
         validate_in_range
 
         precalculate :sick_start_date_for_awe do
@@ -245,7 +242,7 @@ module SmartAnswer
       # Question 8.1
       date_question :last_payday_before_offset? do
         from { Date.new(2010, 1, 1) }
-        to { Date.today.end_of_year }
+        to { Calculators::StatutorySickPayCalculator.year_of_sickness }
         validate_in_range
 
         precalculate :pay_day_offset do
@@ -303,6 +300,10 @@ module SmartAnswer
       value_question :contractual_days_covered_by_earnings? do
         on_response do |response|
           calculator.contractual_days_covered_by_earnings = response
+        end
+
+        validate :must_be_a_number_of_days do
+          calculator.valid_contractual_days_covered_by_earnings?
         end
 
         next_node do

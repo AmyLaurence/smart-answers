@@ -4,107 +4,50 @@
       "id": "https://www.gov.uk/api/worldwide-organisations/british-embassy-colombia",
       "title": "British Embassy Bogotá",
       "format": "Worldwide Organisation",
-      "updated_at": "2015-11-06T16:58:38.000+00:00",
-      "web_url": "https://www.gov.uk/government/world/organisations/british-embassy-colombia",
+      "updated_at": "2017-04-12T09:39:30.000+01:00",
+      "web_url": "https://www.gov.uk/world/organisations/british-embassy-colombia",
       "details": {
         "slug": "british-embassy-colombia"
       },
       "analytics_identifier": "WO16",
       "offices": {
         "main": {
-          "title": "British Consulate, Bogota",
+          "title": "British Embassy",
           "format": "World Office",
           "updated_at": "2014-09-23T11:12:12.000+01:00",
-          "web_url": "https://www.gov.uk/government/world/organisations/british-embassy-colombia/office/british-consulate-cali",
+          "web_url": "https://www.gov.uk/world/organisations/british-embassy-colombia/office/british-embassy",
           "details": {
-            "email": "consular.bogota@fco.gov.uk ",
-            "description": "Opening hours: Monday, Tuesday, Thursday, Friday 9:00am – 12:30pm \r\nClosed on Wednesdays.\r\nAll customers must book an appointment in advance.\r\n\r\n(Outside of normal Embassy operating hours our switchboard will direct you to the appropriate out-of-hours number).\r\n\r\n",
-            "contact_form_url": "https://www.consular-appointments.service.gov.uk/fco/#!/british-embassy-bogot%25C3%25A1/-/service_list ",
-            "access_and_opening_times": "",
-            "type": "Consulate"
+            "email": "embajadabritanica.bogota@fco.gov.uk",
+            "description": "Consulate opening hours: Monday - Thursday: 9:00am – 12:00pm and 14:00pm - 16:00pm. Friday: 9:00am – 12:00pm \r\nAll customers must book an appointment in advance. Please email colombia.consulate@fco.gov.uk",
+            "contact_form_url": "",
+            "access_and_opening_times": "<div class=\"govspeak\"><h2 id=\"opening-hours\">Opening hours</h2>\n\n<p>Monday to Thursday: 8:30am – 12:30pm and 13:30pm – 17:00pm\nFriday: 8:30am – 13:30pm</p>\n\n<h2 id=\"public-holidays\">2018 public holidays</h2>\n\n<table>\n  <tbody>\n    <tr>\n      <td>Monday 1 January</td>\n      <td>Año Nuevo</td>\n      <td>New Year’s Day</td>\n    </tr>\n    <tr>\n      <td>Monday 8 January</td>\n      <td>Día de los Reyes</td>\n      <td>Epiphany</td>\n    </tr>\n    <tr>\n      <td>Monday 19 March</td>\n      <td>Dia de San José</td>\n      <td>St Joseph’s Day</td>\n    </tr>\n    <tr>\n      <td>Thursday 29 March</td>\n      <td>Jueves Santo</td>\n      <td>Maundy Thursday</td>\n    </tr>\n    <tr>\n      <td>Friday 30 March</td>\n      <td>Viernes Santo</td>\n      <td>Good Friday</td>\n    </tr>\n    <tr>\n      <td>Tuesday 1 May</td>\n      <td>Día del Trabajo</td>\n      <td>Labour Day</td>\n    </tr>\n    <tr>\n      <td>Monday 4 June</td>\n      <td>Corpus Christi</td>\n      <td>Corpus Christi</td>\n    </tr>\n    <tr>\n      <td>Monday 2 July</td>\n      <td>San Pedro y San Pablo</td>\n      <td>St Peter and St Paul</td>\n    </tr>\n    <tr>\n      <td>Friday 20 July</td>\n      <td>Día de la Independencia</td>\n      <td>Independence Day</td>\n    </tr>\n    <tr>\n      <td>Monday 15 October</td>\n      <td>Día de la Raza</td>\n      <td>Columbus Day</td>\n    </tr>\n    <tr>\n      <td>Monday 5 November</td>\n      <td>Todos los Santos</td>\n      <td>All Saints Day</td>\n    </tr>\n    <tr>\n      <td>Monday 12 November</td>\n      <td>Independencia de Cartagena</td>\n      <td>Independence of Cartagena</td>\n    </tr>\n    <tr>\n      <td>Tuesday 25 December</td>\n      <td>Día de Navidad</td>\n      <td>Christmas Day</td>\n    </tr>\n    <tr>\n      <td>Wednesday 26 December</td>\n      <td>Día de San Esteban</td>\n      <td>Boxing Day</td>\n    </tr>\n  </tbody>\n</table>\n</div>",
+            "type": "Embassy"
           },
           "address": {
             "adr": {
               "fn": "",
-              "street-address": "Cra 9 No. 76 - 49 piso 9",
+              "street-address": "Carrera 9, No 76-49, Piso 8\r\nEdificio ING Barings, Bogotá",
               "postal-code": "",
-              "locality": "",
-              "region": "Bogota",
+              "locality": "Bogotá",
+              "region": "",
               "country-name": "Colombia"
             },
             "label": {
-              "value": "Cra 9 No. 76 - 49 piso 9\nBogota\nColombia"
+              "value": "Carrera 9, No 76-49, Piso 8\r\nEdificio ING Barings, Bogotá\nBogotá\nColombia"
             }
           },
           "contact_numbers": [
             {
               "label": "Switchboard",
-              "number": "(+571)  3268300"
+              "number": "(57) (1) 326 8300"
             }
           ],
           "services": [
-            {
-              "title": "Emergency Travel Documents service",
-              "type": "Assistance Services"
-            },
-            {
-              "title": "Transferring funds for prisoners / for financial assistance service",
-              "type": "Assistance Services"
-            },
-            {
-              "title": "Registrations of Marriage and Civil Partnerships",
-              "type": "Documentary Services"
-            },
-            {
-              "title": "Births and Deaths registration service",
-              "type": "Documentary Services"
-            },
-            {
-              "title": "Notarial services",
-              "type": "Documentary Services"
-            },
-            {
-              "title": "Citizenship Ceremony service",
-              "type": "Documentary Services"
-            }
+
           ]
         },
         "other": [
-          {
-            "title": "British Embassy",
-            "format": "World Office",
-            "updated_at": "2014-09-23T11:12:12.000+01:00",
-            "web_url": "https://www.gov.uk/government/world/organisations/british-embassy-colombia/office/british-embassy",
-            "details": {
-              "email": "embajadabritanica.bogota@fco.gov.uk",
-              "description": "",
-              "contact_form_url": "",
-              "access_and_opening_times": "",
-              "type": "Embassy"
-            },
-            "address": {
-              "adr": {
-                "fn": "",
-                "street-address": "Carrera 9, No 76-49, Piso 8\r\nEdificio ING Barings, Bogotá",
-                "postal-code": "",
-                "locality": "Bogotá",
-                "region": "",
-                "country-name": "Colombia"
-              },
-              "label": {
-                "value": "Carrera 9, No 76-49, Piso 8\r\nEdificio ING Barings, Bogotá\nBogotá\nColombia"
-              }
-            },
-            "contact_numbers": [
-              {
-                "label": "Switchboard",
-                "number": "(57) (1) 326 8300"
-              }
-            ],
-            "services": [
 
-            ]
-          }
         ]
       },
       "sponsors": [
@@ -118,21 +61,21 @@
       ]
     },
     {
-      "id": "https://www.gov.uk/api/worldwide-organisations/uk-trade-investment-colombia",
-      "title": "UK Trade & Investment Colombia",
+      "id": "https://www.gov.uk/api/worldwide-organisations/department-for-international-trade-colombia",
+      "title": "Department for International Trade Colombia",
       "format": "Worldwide Organisation",
-      "updated_at": "2014-04-24T15:52:16.000+01:00",
-      "web_url": "https://www.gov.uk/government/world/organisations/uk-trade-investment-colombia",
+      "updated_at": "2018-05-29T13:23:04.000+01:00",
+      "web_url": "https://www.gov.uk/world/organisations/department-for-international-trade-colombia",
       "details": {
-        "slug": "uk-trade-investment-colombia"
+        "slug": "department-for-international-trade-colombia"
       },
       "analytics_identifier": "WO277",
       "offices": {
         "main": {
-          "title": "UK Trade & Investment Colombia",
+          "title": "Department for International Trade Colombia",
           "format": "World Office",
           "updated_at": "2013-03-25T10:37:54.000+00:00",
-          "web_url": "https://www.gov.uk/government/world/organisations/uk-trade-investment-colombia/office/uk-trade-investment-colombia",
+          "web_url": "https://www.gov.uk/world/organisations/department-for-international-trade-colombia/office/uk-trade-investment-colombia",
           "details": {
             "email": "Bogota.UKTIMail@fco.gov.uk",
             "description": "",
@@ -169,10 +112,10 @@
       },
       "sponsors": [
         {
-          "title": "UK Trade & Investment",
-          "web_url": "https://www.gov.uk/government/organisations/uk-trade-investment",
+          "title": "Department for International Trade",
+          "web_url": "https://www.gov.uk/government/organisations/department-for-international-trade",
           "details": {
-            "acronym": "UKTI"
+            "acronym": "DIT"
           }
         }
       ]

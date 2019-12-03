@@ -1,94 +1,68 @@
-require 'date'
-require 'ostruct'
+require "date"
+require "ostruct"
 
 module SmartAnswer::Calculators
   class HolidayEntitlement < OpenStruct
     # created for the holiday entitlement calculator
+    STATUTORY_HOLIDAY_ENTITLEMENT_IN_WEEKS = 5.6
+    MAXIMUM_STATUTORY_HOLIDAY_ENTITLEMENT_IN_DAYS = 28.0
 
     def full_time_part_time_days
-      days = (5.6 * fraction_of_year * days_per_week).round(10)
-      days > days_cap ? days_cap : days
+      days = STATUTORY_HOLIDAY_ENTITLEMENT_IN_WEEKS * days_per_week
+      days_cap = MAXIMUM_STATUTORY_HOLIDAY_ENTITLEMENT_IN_DAYS
+      actual_days = days > days_cap ? days_cap : days
+      (actual_days * fraction_of_year).round(10)
     end
 
     def full_time_part_time_hours
-      (5.6 * fraction_of_year * hours_per_week).round(10)
+      hours = STATUTORY_HOLIDAY_ENTITLEMENT_IN_WEEKS * hours_per_week
+      hours_in_day = hours_per_week.to_f / days_per_week
+      hours_cap = MAXIMUM_STATUTORY_HOLIDAY_ENTITLEMENT_IN_DAYS * hours_in_day
+      actual_hours = hours > hours_cap ? hours_cap : hours
+      (actual_hours * fraction_of_year).round(10)
     end
 
     def full_time_part_time_hours_and_minutes
-      (full_time_part_time_hours * 60).floor.divmod(60).map(&:floor)
-    end
-
-    def casual_irregular_entitlement
-      minutes = (5.6 / 46.4 * total_hours * 60).round(10)
-      minutes.floor.divmod(60).map(&:floor)
-    end
-
-    def annualised_hours_per_week
-      (total_hours / 46.4).round(10)
-    end
-
-    def annualised_entitlement
-      # These are the same at the moment
-      casual_irregular_entitlement
+      (full_time_part_time_hours * 60).ceil.divmod(60).map(&:ceil)
     end
 
     def compressed_hours_entitlement
-      minutes = (5.6 * hours_per_week * 60).round(10)
-      minutes.floor.divmod(60).map(&:floor)
+      minutes = STATUTORY_HOLIDAY_ENTITLEMENT_IN_WEEKS * hours_per_week * 60
+      minutes.ceil.divmod(60).map(&:ceil)
     end
 
     def compressed_hours_daily_average
-      minutes = (hours_per_week / days_per_week * 60).round(10)
-      minutes.floor.divmod(60).map(&:floor)
+      minutes = hours_per_week.to_f / days_per_week * 60
+      minutes.ceil.divmod(60).map(&:ceil)
     end
 
     def shift_entitlement
-      (5.6 * fraction_of_year * shifts_per_week).round(10)
-    end
-
-    def feb29th_in_range(start_date, end_date)
-      iterator = start_date
-      while iterator <= end_date
-        return true if feb29th_in_year_range(iterator, start_date, end_date)
-        iterator = iterator + 1.year
-      end
-      # Helps with edge conditions - e.g 2011-12-31 to 2012-12-30
-      feb29th_in_year_range(end_date, start_date, end_date)
+      (STATUTORY_HOLIDAY_ENTITLEMENT_IN_WEEKS * fraction_of_year * shifts_per_week).round(10)
     end
 
     def fraction_of_year
       return 1 if self.start_date.nil? && self.leaving_date.nil?
 
-      leave_year_start, leave_year_end = leave_year_start_end
-
-      # TODO: Check if handling of leap years is correct
-      # Currently divides by 366 days if there is a Feb 29th between the start and end of
-      # the leave year, and 365 if not. This has the same effect as just checking for a leap
-      # year when leave_year_start_date is not set, but should work a little bit better
-      # when it is not set.
-      days_divide = feb29th_in_range(leave_year_start, leave_year_end) ? 366 : 365
+      days_divide = leave_year_range.leap? ? 366 : 365
 
       if start_date && leaving_date
-        (leaving_date - start_date + 1) / days_divide
+        (leaving_date - start_date + 1.0) / days_divide
       elsif leaving_date
-        (leaving_date - leave_year_start + 1) / days_divide
+        (leaving_date - leave_year_range.begins_on + 1.0) / days_divide
       else
-        (leave_year_end - start_date + 1) / days_divide
+        (leave_year_range.ends_on - start_date + 1.0) / days_divide
       end
     end
 
-    def formatted_fraction_of_year(dp = 2)
-      format_number(fraction_of_year, dp)
-    end
-
-    def date_of_year(date, year)
-      date.advance(years: year - date.year)
+    def formatted_fraction_of_year(decimals = 2)
+      format_number(fraction_of_year, decimals)
     end
 
     def strip_zeros(number)
-      number.to_s.sub(/\.0+$/, '')
+      number.to_s.sub(/\.0+$/, "")
     end
 
+    # rubocop:disable Style/MissingRespondToMissing
     def method_missing(symbol, *args)
       # formatted_foo calls format_number on foo
       formatting_method = formatting_method(symbol)
@@ -98,6 +72,7 @@ module SmartAnswer::Calculators
         super
       end
     end
+    # rubocop:enable Style/MissingRespondToMissing
 
     def respond_to?(symbol, include_all = false)
       formatting_method(symbol).present? || super
@@ -110,23 +85,13 @@ module SmartAnswer::Calculators
       matches ? matches[1].to_sym : nil
     end
 
-    def leave_year_start_end
-      if self.leave_year_start_date
-        needs_offset = date_calc >= date_of_year(leave_year_start_date, date_calc.year)
-        number_years = date_calc.year - (needs_offset ? 0 : 1)
-
-        leave_year_start = date_of_year(leave_year_start_date, number_years)
-        leave_year_end = leave_year_start + 1.years - 1.days
-      else
-        leave_year_start = date_calc.beginning_of_year
-        leave_year_end = date_calc.end_of_year
-      end
-
-      [leave_year_start, leave_year_end]
+    def leave_year_range
+      leave_year_start = self.leave_year_start_date || "1 January"
+      SmartAnswer::YearRange.resetting_on(leave_year_start).including(date_calc)
     end
 
     def shifts_per_week
-      (shifts_per_shift_pattern.to_f / days_per_shift_pattern.to_f * 7).round(10)
+      (shifts_per_shift_pattern.to_f / days_per_shift_pattern * 7).round(10)
     end
 
     def date_calc
@@ -137,26 +102,10 @@ module SmartAnswer::Calculators
       end
     end
 
-    def feb29th_in_year_of_date(date)
-      Date.new(date.year, 2, 29)
-    end
-
-    def feb29th_in_year_range(iterator, start_date, end_date)
-      if iterator.leap?
-        feb29th = feb29th_in_year_of_date(iterator)
-        start_date <= feb29th && end_date >= feb29th
-      else
-        false
-      end
-    end
-
-    def format_number(number, dp = 1)
-      str = sprintf("%.#{dp}f", number)
+    def format_number(number, decimal_places = 1)
+      rounded = (number * 10**decimal_places).ceil.to_f / 10**decimal_places
+      str = sprintf("%.#{decimal_places}f", rounded)
       strip_zeros(str)
-    end
-
-    def days_cap
-      (28 * fraction_of_year).round(10)
     end
   end
 end

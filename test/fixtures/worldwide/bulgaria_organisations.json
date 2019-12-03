@@ -5,7 +5,7 @@
       "title": "British Embassy Sofia",
       "format": "Worldwide Organisation",
       "updated_at": "2014-04-09T13:37:30.000+01:00",
-      "web_url": "https://www.gov.uk/government/world/organisations/british-embassy-sofia",
+      "web_url": "https://www.gov.uk/world/organisations/british-embassy-sofia",
       "details": {
         "slug": "british-embassy-sofia"
       },
@@ -15,12 +15,12 @@
           "title": "British Embassy Sofia",
           "format": "World Office",
           "updated_at": "2014-04-09T13:43:37.000+01:00",
-          "web_url": "https://www.gov.uk/government/world/organisations/british-embassy-sofia/office/british-embassy",
+          "web_url": "https://www.gov.uk/world/organisations/british-embassy-sofia/office/british-embassy",
           "details": {
-            "email": "BritishEmbassySofia@fco.gov.uk",
-            "description": "",
-            "contact_form_url": "",
-            "access_and_opening_times": "<div class=\"govspeak\"><h2 id=\"opening-hours\">Opening hours</h2>\n\n<p>Monday to Friday, 9am to 5pm</p>\n\n<p>2016 Public Holidays</p>\n\n<ul>\n  <li>Friday 1 January New Year’s Day</li>\n  <li>Thursday 3 March Liberation Day</li>\n  <li>Friday 25 March UK Easter Friday</li>\n  <li>Monday 28 March UK Easter Monday</li>\n  <li>Friday 29 April Bulgarian Easter Friday</li>\n  <li>Monday 2 May Bulgarian Easter Monday/Early May Bank Holiday</li>\n  <li>Friday 6 May St George’s Day</li>\n  <li>Tuesday 24 May Day of the Slavonic Alphabet</li>\n  <li>Monday 30 May Spring Bank Holiday</li>\n  <li>Monday 29 August Summer Bank Holiday</li>\n  <li>Tuesday 6 September Unification Day</li>\n  <li>Thursday 22 September Independence Day</li>\n  <li>Monday 26 December Boxing Day</li>\n  <li>Tuesday 27 December Christmas Day (substitute day)</li>\n</ul>\n</div>",
+            "email": "",
+            "description": "For enquiries that are not about consular issues, email BritishEmbassySofia@fco.gov.uk\r\n",
+            "contact_form_url": "https://www.contact-embassy.service.gov.uk/?country=Bulgaria&post=British%20Embassy%20Sofia",
+            "access_and_opening_times": "<div class=\"govspeak\"><h2 id=\"opening-hours\">Opening hours</h2>\n<p>Monday to Friday, 9am to 5pm</p>\n\n<h2 id=\"consular-section\">Consular Section</h2>\n<p>The Sofia Consular Section office works by appointment only and is therefore not open to the public at all times. See more information on how to make an appointment <a href=\"https://www.gov.uk/guidance/notarial-and-documentary-services-guide-for-bulgaria--2\">here</a>.</p>\n\n<h2 id=\"public-holidays\">2018 Public Holidays</h2>\n\n<table>\n  <tbody>\n    <tr>\n      <td>Monday 1 January</td>\n      <td>New Year’s Day</td>\n    </tr>\n    <tr>\n      <td>Monday 5 March</td>\n      <td>Bulgarian Liberation Day (substitute day)</td>\n    </tr>\n    <tr>\n      <td>Friday 30 March</td>\n      <td>Good Friday (UK)</td>\n    </tr>\n    <tr>\n      <td>Monday 2 April</td>\n      <td>Easter Monday (UK)</td>\n    </tr>\n    <tr>\n      <td>Friday 6 April</td>\n      <td>Good Friday (BG)</td>\n    </tr>\n    <tr>\n      <td>Monday 9 April</td>\n      <td>Easter Monday (BG)</td>\n    </tr>\n    <tr>\n      <td>Tuesday 1 May</td>\n      <td>Labour Day</td>\n    </tr>\n    <tr>\n      <td>Monday 7 May</td>\n      <td>May Bank Holiday/St George’s Day (substitute day)</td>\n    </tr>\n    <tr>\n      <td>Thursday 24 May</td>\n      <td>Day of the Slavonic Alphabet</td>\n    </tr>\n    <tr>\n      <td>Thursday 6 September</td>\n      <td>Bulgarian Unification Day</td>\n    </tr>\n    <tr>\n      <td>Monday 24 September</td>\n      <td>Bulgarian Independence Day (substitute day)</td>\n    </tr>\n    <tr>\n      <td>Monday 24 December</td>\n      <td>Christmas Eve</td>\n    </tr>\n    <tr>\n      <td>Tuesday 25 December</td>\n      <td>Christmas Day</td>\n    </tr>\n    <tr>\n      <td>Wednesday 26 December</td>\n      <td>Boxing Day</td>\n    </tr>\n  </tbody>\n</table>\n\n<h2 id=\"visa-services\">Visa services</h2>\n\n<p>All visa enquiries are now provided by an external commercial partner.</p>\n\n<p>Visa applications to travel to the UK must be made in advance online through the <a rel=\"external\" href=\"https://uk.tlscontact.com/\">TLS Contact website</a></p>\n\n<p>Should you need to contact UK Visas &amp; Immigration (including status updates, supporting documents and guidance) please visit the <a href=\"https://www.gov.uk/contact-ukvi-inside-outside-uk\">UKVI website</a></p>\n</div>",
             "type": "Embassy"
           },
           "address": {
@@ -44,10 +44,6 @@
             {
               "label": "Fax",
               "number": "(+359) 2 933 9250"
-            },
-            {
-              "label": "Consular e-mail address: ",
-              "number": "consularsection.sofia@fco.gov.uk"
             }
           ],
           "services": [
@@ -72,21 +68,21 @@
       ]
     },
     {
-      "id": "https://www.gov.uk/api/worldwide-organisations/uk-trade-investment-bulgaria",
-      "title": "UK Trade & Investment Bulgaria",
+      "id": "https://www.gov.uk/api/worldwide-organisations/department-for-international-trade-bulgaria",
+      "title": "Department for International Trade Bulgaria",
       "format": "Worldwide Organisation",
-      "updated_at": "2014-04-24T16:46:10.000+01:00",
-      "web_url": "https://www.gov.uk/government/world/organisations/uk-trade-investment-bulgaria",
+      "updated_at": "2018-05-29T13:20:52.000+01:00",
+      "web_url": "https://www.gov.uk/world/organisations/department-for-international-trade-bulgaria",
       "details": {
-        "slug": "uk-trade-investment-bulgaria"
+        "slug": "department-for-international-trade-bulgaria"
       },
       "analytics_identifier": "WO226",
       "offices": {
         "main": {
-          "title": "UK Trade & Investment Bulgaria",
+          "title": "Department for International Trade Bulgaria",
           "format": "World Office",
           "updated_at": "2013-03-25T10:37:54.000+00:00",
-          "web_url": "https://www.gov.uk/government/world/organisations/uk-trade-investment-bulgaria/office/uk-trade-investment-bulgaria",
+          "web_url": "https://www.gov.uk/world/organisations/department-for-international-trade-bulgaria/office/uk-trade-investment-bulgaria",
           "details": {
             "email": "britishembassysofia@fco.gov.uk",
             "description": "",
@@ -123,10 +119,10 @@
       },
       "sponsors": [
         {
-          "title": "UK Trade & Investment",
-          "web_url": "https://www.gov.uk/government/organisations/uk-trade-investment",
+          "title": "Department for International Trade",
+          "web_url": "https://www.gov.uk/government/organisations/department-for-international-trade",
           "details": {
-            "acronym": "UKTI"
+            "acronym": "DIT"
           }
         }
       ]

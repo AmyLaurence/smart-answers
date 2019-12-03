@@ -338,16 +338,6 @@ burkina-faso:
   applying: 12 weeks
   replacing: 8 weeks
   optimistic_processing_time?: false
-burma:
-  type: ips_application_3
-  group: ips_documents_group_3
-  app_form: hmpo_1_application_form
-  application_office: true
-  renewing_new: 6 weeks
-  renewing_old: 16 weeks
-  applying: 16 weeks
-  replacing: 12 weeks
-  optimistic_processing_time?: false
 burundi:
   type: ips_application_3
   group: ips_documents_group_3
@@ -735,7 +725,7 @@ gabon:
   applying: 12 weeks
   replacing: 8 weeks
   optimistic_processing_time?: false
-gambia:
+the-gambia:
   type: ips_application_1
   group: ips_documents_group_3
   app_form: hmpo_1_application_form
@@ -1182,16 +1172,6 @@ macao:
   applying: 6 weeks
   replacing: 6 weeks
   optimistic_processing_time?: true
-macedonia:
-  type: ips_application_1
-  group: ips_documents_group_2
-  app_form: hmpo_1_application_form
-  online_application: true
-  renewing_new: 4 weeks
-  renewing_old: 6 weeks
-  applying: 6 weeks
-  replacing: 6 weeks
-  optimistic_processing_time?: true
 madagascar:
   type: ips_application_1
   group: ips_documents_group_3
@@ -1392,6 +1372,16 @@ mozambique:
   applying: 16 weeks
   replacing: 10 weeks
   optimistic_processing_time?: false
+myanmar:
+  type: ips_application_3
+  group: ips_documents_group_3
+  app_form: hmpo_1_application_form
+  application_office: true
+  renewing_new: 6 weeks
+  renewing_old: 16 weeks
+  applying: 16 weeks
+  replacing: 12 weeks
+  optimistic_processing_time?: false
 namibia:
   type: ips_application_1
   group: ips_documents_group_2
@@ -1491,6 +1481,16 @@ north-korea:
   applying: 6 weeks
   replacing: 6 weeks
   optimistic_processing_time?: false
+north-macedonia:
+  type: ips_application_1
+  group: ips_documents_group_2
+  app_form: hmpo_1_application_form
+  online_application: true
+  renewing_new: 4 weeks
+  renewing_old: 6 weeks
+  applying: 6 weeks
+  replacing: 6 weeks
+  optimistic_processing_time?: true
 norway:
   type: ips_application_1
   group: ips_documents_group_1
@@ -1811,7 +1811,7 @@ south-africa:
   applying: 6 weeks
   replacing: 6 weeks
   optimistic_processing_time?: true
-south-georgia-and-south-sandwich-islands:
+south-georgia-and-the-south-sandwich-islands:
   type: ips_application_1
   group: ips_documents_group_1
   app_form: hmpo_1_application_form
@@ -1947,7 +1947,7 @@ suriname:
   applying: 6 weeks
   replacing: 6 weeks
   optimistic_processing_time?: true
-swaziland:
+eswatini:
   type: ips_application_1
   group: ips_documents_group_2
   app_form: hmpo_1_application_form

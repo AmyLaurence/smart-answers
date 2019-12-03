@@ -19,3 +19,15 @@
   end_date: 2017-04-05
   max: "14,370"
   rate: 479
+- start_date: 2017-04-06
+  end_date: 2018-04-05
+  max: "14,670"
+  rate: 489
+- start_date: 2018-04-06
+  end_date: 2019-04-05
+  max: "15,240"
+  rate: 508
+- start_date: 2019-04-06
+  end_date: 2020-04-05
+  max: "15,750"
+  rate: 525

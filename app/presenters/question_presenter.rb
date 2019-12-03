@@ -1,13 +1,16 @@
 class QuestionPresenter < NodePresenter
-  def initialize(node, state = nil, options = {})
+  attr_reader :params
+
+  def initialize(node, state = nil, options = {}, params = {})
     super(node, state)
+    @params = params
     @renderer = options[:renderer]
     helpers = options[:helpers] || []
     @renderer ||= SmartAnswer::ErbRenderer.new(
-      template_directory: @node.template_directory.join('questions'),
+      template_directory: @node.template_directory.join("questions"),
       template_name: @node.filesystem_friendly_name,
       locals: @state.to_hash,
-      helpers: [SmartAnswer::FormattingHelper] + helpers
+      helpers: [SmartAnswer::FormattingHelper] + helpers,
     )
   end
 
@@ -17,7 +20,7 @@ class QuestionPresenter < NodePresenter
 
   def error
     if @state.error.present?
-      error_message_for(@state.error) || error_message_for('error_message') || default_error_message
+      error_message_for(@state.error) || error_message_for("error_message") || default_error_message
     end
   end
 

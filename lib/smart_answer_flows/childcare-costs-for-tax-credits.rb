@@ -1,8 +1,9 @@
 module SmartAnswer
   class ChildcareCostsForTaxCreditsFlow < Flow
     def define
-      content_id "f8c575b7-d7a2-41a4-9911-069a06f1a2cc"
-      name 'childcare-costs-for-tax-credits'
+      start_page_content_id "f8c575b7-d7a2-41a4-9911-069a06f1a2cc"
+      flow_content_id "5f606f33-a3e9-47ff-bc1d-2a6444e7b54c"
+      name "childcare-costs-for-tax-credits"
       status :published
       satisfies_need "100422"
 
@@ -11,15 +12,13 @@ module SmartAnswer
         option :yes
         option :no
 
-        calculate :cost_change_4_weeks do
-          nil
-        end
+        calculate :cost_change_4_weeks
 
         next_node do |response|
           case response
-          when 'yes'
+          when "yes"
             question :have_costs_changed? #Q3
-          when 'no'
+          when "no"
             question :how_often_use_childcare? #Q2
           end
         end
@@ -33,11 +32,11 @@ module SmartAnswer
 
         next_node do |response|
           case response
-          when 'regularly_less_than_year'
+          when "regularly_less_than_year"
             question :how_often_pay_1? #Q4
-          when 'regularly_more_than_year'
+          when "regularly_more_than_year"
             question :pay_same_each_time? #Q11
-          when 'only_short_while'
+          when "only_short_while"
             outcome :call_helpline_detailed #O1
           end
         end
@@ -50,9 +49,9 @@ module SmartAnswer
 
         next_node do |response|
           case response
-          when 'yes'
+          when "yes"
             question :how_often_pay_2? #Q5
-          when 'no'
+          when "no"
             outcome :no_change #O2
           end
         end
@@ -68,13 +67,13 @@ module SmartAnswer
 
         next_node do |response|
           case response
-          when 'weekly_same_amount'
+          when "weekly_same_amount"
             question :round_up_weekly #O3
-          when 'weekly_diff_amount'
+          when "weekly_diff_amount"
             question :how_much_52_weeks_1? #Q7
-          when 'monthly_same_amount'
+          when "monthly_same_amount"
             question :how_much_each_month? #Q10
-          when 'monthly_diff_amount', 'other'
+          when "monthly_diff_amount", "other"
             question :how_much_12_months_1? #Q6
           end
         end
@@ -90,13 +89,13 @@ module SmartAnswer
 
         next_node do |response|
           case response
-          when 'weekly_same_amount'
+          when "weekly_same_amount"
             question :new_weekly_costs? #Q17
-          when 'weekly_diff_amount', 'other'
+          when "weekly_diff_amount", "other"
             question :how_much_52_weeks_2? #Q8
-          when 'monthly_same_amount'
+          when "monthly_same_amount"
             question :new_monthly_cost? #Q19
-          when 'monthly_diff_amount'
+          when "monthly_diff_amount"
             question :how_much_12_months_2? #Q9
           end
         end
@@ -129,20 +128,20 @@ module SmartAnswer
         end
 
         next_node do |response|
-          amount = Money.new(response)
-          amount == 0 ? outcome(:no_longer_paying) : question(:old_weekly_amount_1?)
+          amount = SmartAnswer::Money.new(response)
+          amount == 0 ? outcome(:no_longer_paying) : question(:old_weekly_amount_1?) # rubocop:disable Style/NumericPredicate
         end
       end
 
       #Q9
       money_question :how_much_12_months_2? do
-        calculate :weekly_cost do |response|
+        calculate :new_weekly_costs do |response|
           Calculators::ChildcareCostCalculator.weekly_cost(response)
         end
 
         next_node do |response|
-          amount = Money.new(response)
-          amount == 0 ? outcome(:no_longer_paying) : question(:old_weekly_amount_1?)
+          amount = SmartAnswer::Money.new(response)
+          amount == 0 ? outcome(:no_longer_paying) : question(:old_monthly_amount?) # rubocop:disable Style/NumericPredicate
         end
       end
 
@@ -163,9 +162,9 @@ module SmartAnswer
 
         next_node do |response|
           case response
-          when 'yes'
+          when "yes"
             question :how_often_pay_providers? #Q12
-          when 'no'
+          when "no"
             question :how_much_spent_last_12_months? #Q16
           end
         end
@@ -183,17 +182,17 @@ module SmartAnswer
 
         next_node do |response|
           case response
-          when 'weekly'
+          when "weekly"
             outcome :round_up_weekly #O3
-          when 'fortnightly'
+          when "fortnightly"
             question :how_much_fortnightly? #Q13
-          when 'every_4_weeks'
+          when "every_4_weeks"
             question :how_much_4_weeks? #Q14
-          when 'every_month'
+          when "every_month"
             question :how_much_each_month? #Q10
-          when 'termly', 'other'
+          when "termly", "other"
             outcome :call_helpline_plain #O5
-          when 'yearly'
+          when "yearly"
             question :how_much_yearly? #Q15
           end
         end
@@ -247,8 +246,8 @@ module SmartAnswer
         end
 
         next_node do |response|
-          amount = Money.new(response)
-          amount == 0 ? outcome(:no_longer_paying) : question(:old_weekly_amount_2?)
+          amount = SmartAnswer::Money.new(response)
+          amount == 0 ? outcome(:no_longer_paying) : question(:old_weekly_amount_2?) # rubocop:disable Style/NumericPredicate
         end
       end
 
@@ -280,8 +279,8 @@ module SmartAnswer
         end
 
         next_node do |response|
-          amount = Money.new(response)
-          amount == 0 ? outcome(:no_longer_paying) : question(:old_weekly_amount_3?)
+          amount = SmartAnswer::Money.new(response)
+          amount == 0 ? outcome(:no_longer_paying) : question(:old_monthly_amount?) # rubocop:disable Style/NumericPredicate
         end
       end
 
@@ -307,9 +306,9 @@ module SmartAnswer
       end
 
       #Q21
-      money_question :old_weekly_amount_3? do
+      money_question :old_monthly_amount? do
         calculate :old_weekly_costs do |response|
-          Float(response).ceil
+          Calculators::ChildcareCostCalculator.weekly_cost_from_monthly(response)
         end
 
         calculate :weekly_difference do
@@ -357,7 +356,7 @@ module SmartAnswer
         end
 
         precalculate :difference_money do
-          Money.new(weekly_difference.abs)
+          SmartAnswer::Money.new(weekly_difference.abs)
         end
       end
 

@@ -1,25 +1,33 @@
-require 'lrucache'
-
 class WorldLocation
   attr_reader :title, :details, :slug
 
   def self.cache
-    @cache ||= LRUCache.new(max_size: 250, soft_ttl: 24.hours, ttl: 1.week)
+    @cache ||= {
+      day: ActiveSupport::Cache::MemoryStore.new(expires_in: 24.hours),
+      week: ActiveSupport::Cache::MemoryStore.new(expires_in: 1.week),
+    }
   end
 
   def self.reset_cache
-    @cache = nil
+    cache[:day].clear
+    cache[:week].clear
   end
 
   def self.all
     cache_fetch("all") do
-      world_locations = Services.worldwide_api.world_locations.with_subsequent_pages.map do |response|
-        location = response.to_hash
-        if valid_world_location_format?(location)
-          self.new(location)
+      world_locations = Services.worldwide_api
+        .world_locations
+        .with_subsequent_pages
+        .each_with_object([]) do |response, locations|
+          location = response.to_hash
+          if valid_world_location_format?(location)
+            locations << self.new(location)
+          end
         end
-      end
-      world_locations.compact
+
+      raise NoLocationsFromWorldwideApiError if world_locations.empty?
+
+      world_locations
     end
   end
 
@@ -41,21 +49,19 @@ class WorldLocation
   # On GdsApi errors, returns a stale value from the cache if available,
   # otherwise re-raises the original GdsApi exception
   def self.cache_fetch(key)
-    inner_exception = nil
-    cache.fetch(key) do
-      begin
-        yield
-      rescue GdsApi::BaseError => e
-        inner_exception = e
-        raise RuntimeError.new("use_stale_value")
-      end
+    value = cache[:day].read(key)
+    return value unless value.nil?
+
+    begin
+      value = yield
+      cache[:day].write(key, value)
+      cache[:week].write(key, value)
+    rescue GdsApi::BaseError => e
+      value = cache[:week].read(key)
+      raise e if value.nil?
     end
-  rescue RuntimeError => e
-    if e.message == "use_stale_value"
-      raise inner_exception
-    else
-      raise
-    end
+
+    value
   end
 
   def initialize(location)
@@ -77,4 +83,6 @@ class WorldLocation
   def fco_organisation
     self.organisations.find(&:fco_sponsored?)
   end
+
+  class NoLocationsFromWorldwideApiError < StandardError; end
 end

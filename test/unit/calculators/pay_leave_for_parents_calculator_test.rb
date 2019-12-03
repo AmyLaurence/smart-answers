@@ -4,18 +4,18 @@ module SmartAnswer
   module Calculators
     class PayLeaveForParentsCalculatorTest < ActiveSupport::TestCase
       setup do
-        @due_date = Date.parse('2015-1-1')
+        @due_date = Date.parse("2015-1-1")
         @calculator = PayLeaveForParentsCalculator.new
         @calculator.due_date = @due_date
       end
 
       test "continuity_start_date" do
-        expected = Date.parse('2014-3-29')
+        expected = Date.parse("2014-3-29")
         assert_equal expected, @calculator.continuity_start_date
       end
 
       test "continuity_end_date" do
-        expected = Date.parse('2014-9-14')
+        expected = Date.parse("2014-9-14")
         assert_equal expected, @calculator.continuity_end_date
       end
 
@@ -70,10 +70,6 @@ module SmartAnswer
           @calculator.due_date = @date
         end
 
-        should "be in 2013-2014 range" do
-          assert_equal true, @calculator.in_2013_2014_fin_year?(@date)
-        end
-
         should "return £ 109 for lower_earnings_amount" do
           assert_equal 109, @calculator.lower_earnings_amount
         end
@@ -84,10 +80,6 @@ module SmartAnswer
           @date = Date.parse("2015-1-1")
           @calculator = PayLeaveForParentsCalculator.new
           @calculator.due_date = @date
-        end
-
-        should "be in 2013-2014 range" do
-          assert_equal true, @calculator.in_2014_2015_fin_year?(@date)
         end
 
         should "return £ 111 for lower_earnings_amount" do
@@ -102,24 +94,80 @@ module SmartAnswer
           @calculator.due_date = @date
         end
 
-        should "be in 2015-2016 range" do
-          assert_equal true, @calculator.in_2015_2016_fin_year?(@date)
-        end
-
         should "return £ 112 for lower_earnings_amount" do
           assert_equal 112, @calculator.lower_earnings_amount
         end
       end
 
-      context "due date outside all ranges" do
+      context "due date in 2016-2017 range" do
         setup do
-          @date = Date.parse("2022-1-1")
+          @date = Date.parse("2017-01-01")
           @calculator = PayLeaveForParentsCalculator.new
           @calculator.due_date = @date
         end
 
-        should "return the latest_pat_leave known lower_earnings_amount" do
+        should "return £112 for lower_earnings_amount" do
           assert_equal 112, @calculator.lower_earnings_amount
+        end
+      end
+
+      context "due date in 2017-2018 range" do
+        setup do
+          @date = Date.parse("2018-01-01")
+          @calculator = PayLeaveForParentsCalculator.new
+          @calculator.due_date = @date
+        end
+
+        should "return £113 for lower_earnings_amount" do
+          assert_equal 113, @calculator.lower_earnings_amount
+        end
+      end
+
+      context "due date in 2018-2019 range" do
+        setup do
+          @date = Date.parse("2019-01-01")
+          @calculator = PayLeaveForParentsCalculator.new
+          @calculator.due_date = @date
+        end
+
+        should "return £116 for lower_earnings_amount" do
+          assert_equal 116, @calculator.lower_earnings_amount
+        end
+      end
+
+      context "due date in 2019-2020 range" do
+        setup do
+          @date = Date.parse("2020-01-01")
+          @calculator = PayLeaveForParentsCalculator.new
+          @calculator.due_date = @date
+        end
+
+        should "return £118 for lower_earnings_amount" do
+          assert_equal 118, @calculator.lower_earnings_amount
+        end
+      end
+
+      context "due date outside all ranges" do
+        setup do
+          @date = Date.parse("2022-01-01")
+          @calculator = PayLeaveForParentsCalculator.new
+          @calculator.due_date = @date
+        end
+
+        should "return the latest known lower_earnings_amount" do
+          assert_equal 118, @calculator.lower_earnings_amount
+        end
+      end
+
+      context "an LEL period which straddles an LEL uprating" do
+        setup do
+          @date = Date.parse("2018-09-08")
+          @calculator = PayLeaveForParentsCalculator.new
+          @calculator.due_date = @date
+        end
+
+        should "return the more recent lower_earnings_amount" do
+          assert_equal 116, @calculator.lower_earnings_amount
         end
       end
     end

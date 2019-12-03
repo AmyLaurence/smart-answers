@@ -1,23 +1,17 @@
-require 'bigdecimal'
+require "bigdecimal"
 module SmartAnswer
   class Money
     include Comparable
     extend Forwardable
 
-    delegate [:to_f, :to_s, :*, :+, :-, :/] => :value
+    delegate %i[to_f to_s * + - /] => :value
 
     attr_reader :value
 
     def initialize(raw_input)
-      if raw_input.is_a?(Numeric)
-        @value = BigDecimal.new(raw_input.to_s)
-      else
-        raw_input = raw_input.to_s.delete(',').gsub(/\s/, '')
-        if !self.class.valid?(raw_input)
-          raise InvalidResponse, "Sorry, I couldn't understand that number. Please try again.", caller
-        end
-        @value = BigDecimal.new(raw_input.to_s)
-      end
+      input = self.class.parse(raw_input)
+      self.class.validate!(input)
+      @value = BigDecimal(input.to_s)
     end
 
     def to_s
@@ -32,8 +26,23 @@ module SmartAnswer
       end
     end
 
-    def self.valid?(raw_input)
-      raw_input.is_a?(Numeric) || raw_input.is_a?(Money) || raw_input =~ /\A *[0-9]+(\.[0-9]{1,2})? *\z/
+    def self.parse(raw_input)
+      if raw_input.is_a?(Numeric)
+        raw_input
+      else
+        raw_input.to_s.delete(",").gsub(/\s/, "").gsub(/£/, "")
+      end
+    end
+
+    def self.validate!(input)
+      unless input.is_a?(Numeric) || input.is_a?(Money) || input =~ /\A *[0-9]+(\.[0-9]{1,2})? *\z/
+        raise InvalidResponse, "Sorry, that number is not valid. Please try again.", caller
+      end
+      if input.to_f.infinite?
+        raise InvalidResponse, "Sorry, that number is too big. Please try again.", caller
+      end
+
+      true
     end
   end
 end

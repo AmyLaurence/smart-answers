@@ -4,7 +4,7 @@
   lawyer: /government/publications/afghanistan-list-of-lawyers
 - slug: albania
   doc: /government/publications/albania-prisoner-pack
-  lawyer: /government/publications/albania-list-of-lawyers
+  lawyer: /government/publications/albania-list-of-lawyers--2
 - slug: algeria
   pdf: /government/publications/algeria-prisoner-pack
   lawyer: /government/publications/algeria-list-of-lawyers
@@ -89,9 +89,9 @@
   pdf: /government/publications/bulgaria-prisoner-pack
   lawyer: /government/publications/bulgaria-list-of-lawyers
 - slug: burkina-faso
-- slug: burma
-  pdf: /government/publications/burma-prisoner-pack
-  lawyer: /government/publications/burma-list-of-lawyers
+- slug: myanmar
+  pdf: /government/publications/myanmar-prisoner-pack
+  lawyer: /government/publications/myanmar-list-of-lawyers
 - slug: burundi
 - slug: cambodia
   pdf: /government/publications/cambodia-prisoner-pack
@@ -190,7 +190,7 @@
 - slug: french-guiana
 - slug: french-polynesia
 - slug: gabon
-- slug: gambia
+- slug: the-gambia
   pdf: /government/publications/gambia-prisoner-pack
   lawyer: /government/publications/gambia-list-of-lawyers
 - slug: georgia
@@ -246,10 +246,10 @@
   lawyer: /government/publications/ireland-list-of-lawyers
 - slug: israel
   pdf: /government/publications/israel-prisoner-pack
-  lawyer: /government/world/israel/help-for-british-nationals/when-things-go-wrong/if-you-need-lawyer/
+  lawyer: /government/publications/israel-list-of-lawyers
 - slug: italy
   pdf: /government/publications/italy-prisoner-pack
-  lawyer: /government/world/italy/help-for-british-nationals/when-things-go-wrong/if-you-need-lawyer/
+  lawyer: /government/publications/italy-list-of-lawyers
 - slug: jamaica
   pdf: /government/publications/jamaica-prisoner-pack
   lawyer: /government/publications/jamaica-list-of-lawyers
@@ -303,8 +303,6 @@
   translators: /government/publications/british-embassy-luxembourg-translators
   prison: /government/publications/british-embassy-luxembourg-prisoner-pack
 - slug: macao
-- slug: macedonia
-  pdf: /government/publications/macedonia-prisoner-pack
 - slug: madagascar
   lawyer: /government/publications/madagascar-list-of-lawyers
 - slug: malawi
@@ -368,6 +366,8 @@
   pdf: /government/publications/nigeria-prisoner-pack
   lawyer: /government/publications/nigeria-list-of-lawyers
 - slug: north-korea
+- slug: north-macedonia
+  pdf: /government/publications/north-macedonia-prisoner-pack
 - slug: norway
   pdf: /government/publications/norway-prisoner-pack
   lawyer: /government/publications/norway-list-of-lawyers
@@ -449,7 +449,7 @@
 - slug: south-africa
   doc: /government/publications/south-africa-prisoner-pack
   lawyer: /government/publications/south-africa-list-of-lawyers
-- slug: south-georgia-and-south-sandwich-islands
+- slug: south-georgia-and-the-south-sandwich-islands
 - slug: south-sudan
 - slug: spain
   pdf: /government/publications/spain-prisoner-pack
@@ -475,7 +475,7 @@
   lawyer: /government/publications/sudan-list-of-lawyers
 - slug: suriname
   pdf: /government/publications/guyana-prisoner-pack
-- slug: swaziland
+- slug: eswatini
 - slug: sweden
   pdf: /government/publications/sweden-prisoner-pack
   lawyer: /government/publications/sweden-list-of-lawyers

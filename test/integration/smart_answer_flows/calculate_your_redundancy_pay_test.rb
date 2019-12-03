@@ -1,5 +1,5 @@
-require_relative '../../test_helper'
-require_relative 'flow_test_helper'
+require_relative "../../test_helper"
+require_relative "flow_test_helper"
 
 require "smart_answer_flows/calculate-your-redundancy-pay"
 
@@ -7,6 +7,7 @@ class CalculateYourRedundancyPayTest < ActiveSupport::TestCase
   include FlowTestHelper
 
   setup do
+    Timecop.freeze("2019-08-31")
     setup_for_testing_flow SmartAnswer::CalculateYourRedundancyPayFlow
   end
 
@@ -14,15 +15,15 @@ class CalculateYourRedundancyPayTest < ActiveSupport::TestCase
     assert_current_node :date_of_redundancy?
   end
 
-  context "answer before 1 Feb 2013" do
+  context "answer with a valid date (within 4 years of now)" do
     setup do
-      add_response '2013-01-31'
+      # Freeze to 2017 so that 2013 is still an allowed date
+      Timecop.freeze("2017-08-31")
+      add_response "2013-01-31"
     end
 
     should "be in employee flow for age" do
       assert_current_node :age_of_employee?
-      assert_state_variable :rate, 430
-      assert_state_variable :ni_rate, 430
     end
 
     context "42 years old" do
@@ -53,8 +54,9 @@ class CalculateYourRedundancyPayTest < ActiveSupport::TestCase
           assert_current_node :weekly_pay_before_tax?
         end
 
-        context "weekly salary of over 430 before tax" do
+        context "with a weekly salary of more than the rate before tax" do
           setup do
+            # 2012-2013 rate is 430
             add_response "1500"
           end
 
@@ -62,12 +64,13 @@ class CalculateYourRedundancyPayTest < ActiveSupport::TestCase
             assert_current_node :done
           end
 
-          should "give me a figure no higher than 430 per week" do
+          should "give me a figure no higher than the rate per week" do
+            # 2012-2013 rate is 430
             assert_state_variable :statutory_redundancy_pay, "1,935"
             assert_state_variable :statutory_redundancy_pay_ni, "1,935"
           end
 
-          should "give me 2 weeks total entitlement" do
+          should "give me 4.5 weeks total entitlement" do
             assert_state_variable :number_of_weeks_entitlement, 4.5
           end
         end
@@ -102,8 +105,9 @@ class CalculateYourRedundancyPayTest < ActiveSupport::TestCase
           assert_current_node :weekly_pay_before_tax?
         end
 
-        context "weekly salary of over 430 before tax" do
+        context "weekly salary of over the rate before tax" do
           setup do
+            # 2012-2013 rate is 430
             add_response "1500"
           end
 
@@ -111,20 +115,31 @@ class CalculateYourRedundancyPayTest < ActiveSupport::TestCase
             assert_current_node :done
           end
 
-          should "give me a figure no higher than 430 per week" do
+          should "give me a figure no higher than the rate per week" do
+            # 2012-2013 rate is 430
             assert_state_variable :statutory_redundancy_pay, "860"
             assert_state_variable :statutory_redundancy_pay_ni, "860"
           end
+
+          should "give me 2 weeks total entitlement" do
+            assert_state_variable :number_of_weeks_entitlement, 2.0
+          end
         end
 
-        context "weekly salary of under 430 before tax" do
+        context "weekly salary of under the rate before tax" do
           setup do
+            # 2012-2013 rate is 430
             add_response "300"
           end
 
-          should "give me a figure below 430" do
+          should "give me a figure below the rate" do
+            # 2012-2013 rate is 430
             assert_state_variable :statutory_redundancy_pay, "600"
             assert_state_variable :statutory_redundancy_pay_ni, "600"
+          end
+
+          should "give me 2 weeks total entitlement" do
+            assert_state_variable :number_of_weeks_entitlement, 2.0
           end
         end
       end
@@ -182,8 +197,9 @@ class CalculateYourRedundancyPayTest < ActiveSupport::TestCase
           assert_current_node :weekly_pay_before_tax?
         end
 
-        context "weekly salary of over 430 before tax" do
+        context "weekly salary of over the rate before tax" do
           setup do
+            # 2012-2013 rate is 430
             add_response "1500"
           end
 
@@ -191,43 +207,69 @@ class CalculateYourRedundancyPayTest < ActiveSupport::TestCase
             assert_current_node :done
           end
 
-          should "give me a figure no higher than 430 per week" do
+          should "give me a figure no higher than the rate per week" do
+            # 2012-2013 rate is 430
             assert_state_variable :statutory_redundancy_pay, "1,290"
             assert_state_variable :statutory_redundancy_pay_ni, "1,290"
           end
+
+          should "give me 3 weeks total entitlement" do
+            assert_state_variable :number_of_weeks_entitlement, 3.0
+          end
         end
 
-        context "weekly salary of under 430 before tax" do
+        context "weekly salary of under the rate before tax" do
           setup do
+            # 2012-2013 rate is 430
             add_response "300"
           end
 
-          should "give me a figure below 430" do
+          should "give me a figure below the rate" do
+            # 2012-2013 rate is 430
             assert_state_variable :statutory_redundancy_pay, "900"
             assert_state_variable :statutory_redundancy_pay_ni, "900"
+          end
+
+          should "give me 3 weeks total entitlement" do
+            assert_state_variable :number_of_weeks_entitlement, 3.0
           end
         end
       end
     end
-  end # Before Feb 2013
-  context "answer 1 Feb 2013, 42 y/o, worked for 4.5 years" do
-    should "give the answer using the new rate" do
-      add_response '2013-02-01'
-      add_response '42'
-      add_response '4.5'
-      add_response '700'
+  end
+
+  context "2012/2013 (rate ends on 1st Feb)" do
+    should "use the correct rates" do
+      Timecop.freeze("2017-08-31")
+      add_response "2013-01-31"
+      add_response "42"
+      add_response "4.5"
+      add_response "700"
+      assert_current_node :done
+      assert_state_variable :rate, 430
+      assert_state_variable :ni_rate, 430
+    end
+  end
+
+  context "2013/2014 (rate starts on 1st Feb)" do
+    should "use the correct rates" do
+      Timecop.freeze("2017-08-31")
+      add_response "2013-02-01"
+      add_response "42"
+      add_response "4.5"
+      add_response "700"
       assert_current_node :done
       assert_state_variable :rate, 450
       assert_state_variable :ni_rate, 450
     end
-  end # After Feb 2013
+  end
 
   context "2015/2016" do
     should "Use the correct rates" do
-      add_response '2015-05-01'
-      add_response '22'
-      add_response '7'
-      add_response '700'
+      add_response "2015-05-01"
+      add_response "22"
+      add_response "7"
+      add_response "700"
       assert_current_node :done
       assert_state_variable :rate, 475
       assert_state_variable :ni_rate, 490
@@ -238,12 +280,51 @@ class CalculateYourRedundancyPayTest < ActiveSupport::TestCase
     end
   end
 
-  context "answer 05 April 2014" do
-    setup do
-      add_response Date.parse("2014-04-05")
+  context "2017/2018" do
+    should "Use the correct rates" do
+      add_response "2017-05-01"
+      add_response "22"
+      add_response "7"
+      add_response "700"
+      assert_current_node :done
+      assert_state_variable :rate, 489
+      assert_state_variable :ni_rate, 500
+      assert_state_variable :max_amount, "14,670"
+      assert_state_variable :ni_max_amount, "15,000"
+      assert_state_variable :statutory_redundancy_pay, "1,711.50"
+      assert_state_variable :statutory_redundancy_pay_ni, "1,750"
     end
-    should "ask employee age" do
-      assert_current_node :age_of_employee?
+  end
+
+  context "2018/2019" do
+    should "Use the correct rates" do
+      add_response "2018-05-01"
+      add_response "22"
+      add_response "7"
+      add_response "700"
+      assert_current_node :done
+      assert_state_variable :rate, 508
+      assert_state_variable :ni_rate, 530
+      assert_state_variable :max_amount, "15,240"
+      assert_state_variable :ni_max_amount, "15,000"
+      assert_state_variable :statutory_redundancy_pay, "1,778"
+      assert_state_variable :statutory_redundancy_pay_ni, "1,855"
+    end
+  end
+
+  context "2019/2020" do
+    should "Use the correct rates" do
+      add_response "2019-05-01"
+      add_response "22"
+      add_response "7"
+      add_response "700"
+      assert_current_node :done
+      assert_state_variable :rate, 525
+      assert_state_variable :ni_rate, 547
+      assert_state_variable :max_amount, "15,750"
+      assert_state_variable :ni_max_amount, "16,410"
+      assert_state_variable :statutory_redundancy_pay, "1,837.50"
+      assert_state_variable :statutory_redundancy_pay_ni, "1,914.50"
     end
   end
 end

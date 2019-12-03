@@ -1,10 +1,73 @@
 {
   "results": [
+    {
+      "id": "https://www.gov.uk/api/worldwide-organisations/british-embassy-paris",
+      "title": "British Embassy Paris",
+      "format": "Worldwide Organisation",
+      "updated_at": "2014-05-13T10:15:06.000+01:00",
+      "web_url": "https://www.gov.uk/world/organisations/british-embassy-paris",
+      "details": {
+        "slug": "british-embassy-paris"
+      },
+      "analytics_identifier": "WO49",
+      "offices": {
+        "main": {
+          "title": "British Embassy Paris",
+          "format": "World Office",
+          "updated_at": "2013-03-28T10:26:49.000+00:00",
+          "web_url": "https://www.gov.uk/world/organisations/british-embassy-paris/office/british-embassy",
+          "details": {
+            "email": "",
+            "description": "For enquiries that are not about consular issues, email France.Enquiries@fco.gov.uk",
+            "contact_form_url": "https://www.contact-embassy.service.gov.uk/?country=France&post=British%20Embassy%20Paris%20",
+            "access_and_opening_times": "<div class=\"govspeak\"><h2 id=\"opening-times\">Opening times</h2>\n\n<p>Monday to Friday, 9:30am to 1pm and 2:30pm to 5pm</p>\n\n<h2 id=\"public-holidays-2018\">Public holidays 2018</h2>\n\n<p>The British Embassy in Paris and the British Consulates will be closed on the following public holidays.</p>\n\n<p>In an emergency, please call +33 (0)1 44 51 31 00</p>\n\n<table>\n  <thead>\n    <tr>\n      <th>Date</th>\n      <th>Holiday</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td>Monday 1 January 2018</td>\n      <td>New Years Day</td>\n    </tr>\n    <tr>\n      <td>Friday 30 March 2018</td>\n      <td>Good Friday</td>\n    </tr>\n    <tr>\n      <td>Monday 2 April 2018</td>\n      <td>Easter Monday</td>\n    </tr>\n    <tr>\n      <td>Tuesday 1 May 2018</td>\n      <td>May Bank Holiday</td>\n    </tr>\n    <tr>\n      <td>Monday 7 May 2018</td>\n      <td>May Day</td>\n    </tr>\n    <tr>\n      <td>Tuesday 8 May 2018</td>\n      <td>8 Mai 1945</td>\n    </tr>\n    <tr>\n      <td>Thursday 10 May 2018</td>\n      <td>Jeudi de l’Ascension</td>\n    </tr>\n    <tr>\n      <td>Monday 21 May 2018</td>\n      <td>Lundi de Pentecôte</td>\n    </tr>\n    <tr>\n      <td>Monday 28 May 2018</td>\n      <td>May Bank Holiday</td>\n    </tr>\n    <tr>\n      <td>Wednesday 15 August 2018</td>\n      <td>Assomption</td>\n    </tr>\n    <tr>\n      <td>Monday 27 August 2018</td>\n      <td>August Bank Holiday</td>\n    </tr>\n    <tr>\n      <td>Thursday 1 November 2018</td>\n      <td>La Toussaint</td>\n    </tr>\n    <tr>\n      <td>Monday 24 December 2018</td>\n      <td>Christmas Eve</td>\n    </tr>\n    <tr>\n      <td>Tuesday 25 December 2018</td>\n      <td>Christmas Day</td>\n    </tr>\n    <tr>\n      <td>Wednesday 26 December 2018</td>\n      <td>Boxing Day</td>\n    </tr>\n  </tbody>\n</table>\n\n<h2 id=\"getting-to-the-embassy\">Getting to the embassy</h2>\n\n<h3 id=\"parking\">Parking</h3>\n\n<p>Unfortunately there are no parking spaces available in the Faubourg. The nearest public car park is at Madeleine Tronchet and there is also a car park at Place de la Concorde (on the angle of avenue Gabriel) which provides a 24-hour service. <a rel=\"external\" href=\"http://www.vincipark.com/\" title=\"Vinci park website\">Visit the Vinci website for more details.</a></p>\n\n<h3 id=\"bus\">Bus</h3>\n\n<p>For those of you who prefer to travel by bus, the following lines will get you close to the embassy: 24, 42, 52, 72, 73, 84, 94 or <a rel=\"external\" href=\"http://www.ratp.fr/en/\">consult the RATP website</a> in order to plan a more personalised route.</p>\n\n<h3 id=\"metro\">Metro</h3>\n\n<p>The nearest metro stations are Madeleine (lines 8, 12, 14), Concorde (line 1), Miromesnil (lines 9, 13) and Champs-Elysees (lines 1, 13).  Route maps and service information can be found <a rel=\"external\" href=\"http://www.ratp.fr/en/\">on the RATP website.</a></p>\n\n<h3 id=\"train\">Train</h3>\n\n<p>The nearest train station is Saint Lazare which is about a 10-minute walk from the embassy. Service information can be found <a rel=\"external\" href=\"http://www.transilien.com/?siteLanguage=en\" title=\"Transilien website\">on the Transilien website.</a></p>\n\n<h2 id=\"disabled-access\">Disabled access</h2>\n\n<p>For disabled persons, wheelchair access and assistance is available on request in all our buildings.</p>\n</div>",
+            "type": "Embassy"
+          },
+          "address": {
+            "adr": {
+              "fn": "",
+              "street-address": "35, rue du Faubourg St Honoré\r\nParis Cedex 08",
+              "postal-code": "75383",
+              "locality": "Paris",
+              "region": "",
+              "country-name": "France"
+            },
+            "label": {
+              "value": "35, rue du Faubourg St Honoré\r\nParis Cedex 08\n75383 Paris\nFrance"
+            }
+          },
+          "contact_numbers": [
+            {
+              "label": "Telephone",
+              "number": "+33 (0) 1 44 51 31 00"
+            },
+            {
+              "label": "Press enquiries",
+              "number": "+33 (0) 1 44 51 33 39"
+            }
+          ],
+          "services": [
 
+          ]
+        },
+        "other": [
+
+        ]
+      },
+      "sponsors": [
+        {
+          "title": "Foreign & Commonwealth Office",
+          "web_url": "https://www.gov.uk/government/organisations/foreign-commonwealth-office",
+          "details": {
+            "acronym": "FCO"
+          }
+        }
+      ]
+    }
   ],
   "current_page": 1,
-  "total": 0,
-  "pages": 0,
+  "total": 1,
+  "pages": 1,
   "page_size": 20,
   "start_index": 1,
   "_response_info": {

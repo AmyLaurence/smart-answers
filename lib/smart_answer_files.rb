@@ -27,20 +27,20 @@ private
   end
 
   def all_paths
-    [
-      flow_path,
-      locale_path,
-      questions_and_responses_test_data_path,
-      responses_and_expected_results_test_data_path
-    ] + erb_template_paths + additional_files_absolute_paths
+    (
+      [
+        flow_path,
+        locale_path,
+      ] + erb_template_paths + additional_files_absolute_paths
+    ).sort
   end
 
   def erb_template_directory
-    Rails.root.join('lib', 'smart_answer_flows', @flow_name)
+    Rails.root.join("lib", "smart_answer_flows", @flow_name)
   end
 
   def erb_template_paths
-    Dir[erb_template_directory.join('**/*.erb')].collect do |path|
+    Dir[erb_template_directory.join("**/*.erb")].collect do |path|
       Pathname.new(path)
     end
   end
@@ -50,18 +50,10 @@ private
   end
 
   def flow_path
-    Rails.root.join('lib', 'smart_answer_flows', "#{@flow_name}.rb")
+    Rails.root.join("lib", "smart_answer_flows", "#{@flow_name}.rb")
   end
 
   def locale_path
-    Rails.root.join('lib', 'smart_answer_flows', 'locales', 'en', "#{@flow_name}.yml")
-  end
-
-  def questions_and_responses_test_data_path
-    SmartAnswerTestHelper.new(@flow_name).question_and_responses_path
-  end
-
-  def responses_and_expected_results_test_data_path
-    SmartAnswerTestHelper.new(@flow_name).responses_and_expected_results_path
+    Rails.root.join("lib", "smart_answer_flows", "locales", "en", "#{@flow_name}.yml")
   end
 end

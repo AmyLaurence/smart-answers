@@ -2,8 +2,9 @@
 module SmartAnswer
   class AllSmartAnswerQuestionsFlow < Flow
     def define
-      content_id '92661afb-63ce-4ded-b06e-cf6288c0d629'
-      name 'all-smart-answer-questions'
+      start_page_content_id "92661afb-63ce-4ded-b06e-cf6288c0d629"
+      flow_content_id "81374601-4936-42c7-a26c-7d169177cdb0"
+      name "all-smart-answer-questions"
       status :draft
 
       additional_countries = [OpenStruct.new(slug: "mordor", name: "Mordor")]

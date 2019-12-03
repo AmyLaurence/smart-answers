@@ -1,9 +1,10 @@
-require 'ostruct'
+require "ostruct"
 
 module SmartAnswer
   class Flow
     attr_reader :nodes
-    attr_accessor :status, :need_id
+    attr_accessor :need_id
+    attr_writer :status
 
     def self.build
       flow = new
@@ -23,9 +24,14 @@ module SmartAnswer
       end
     end
 
-    def content_id(cid = nil)
-      @content_id = cid unless cid.nil?
-      @content_id
+    def start_page_content_id(cid = nil)
+      @start_page_content_id = cid unless cid.nil?
+      @start_page_content_id
+    end
+
+    def flow_content_id(cid = nil)
+      @flow_content_id = cid unless cid.nil?
+      @flow_content_id
     end
 
     def name(name = nil)
@@ -46,10 +52,11 @@ module SmartAnswer
       status == :draft
     end
 
-    def status(s = nil)
-      if s
-        raise Flow::InvalidStatus unless [:published, :draft].include? s
-        @status = s
+    def status(potential_status = nil)
+      if potential_status
+        raise Flow::InvalidStatus unless %i[published draft].include? potential_status
+
+        @status = potential_status
       end
 
       @status
@@ -114,10 +121,15 @@ module SmartAnswer
     def process(responses)
       responses.inject(start_state) do |state, response|
         return state if state.error
+
         begin
           state = node(state.current_node).transition(state, response)
           node(state.current_node).evaluate_precalculations(state)
-        rescue InvalidResponse => e
+        rescue BaseStateTransitionError => e
+          if e.is_a?(LoggedError)
+            GovukError.notify e
+          end
+
           state.dup.tap do |new_state|
             new_state.error = e.message
             new_state.freeze
@@ -140,6 +152,7 @@ module SmartAnswer
 
     def add_node(node)
       raise "Node #{node.name} already defined" if node_exists?(node)
+
       @nodes << node
     end
   end

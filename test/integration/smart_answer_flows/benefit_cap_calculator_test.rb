@@ -1,6 +1,6 @@
-require_relative '../../test_helper'
-require_relative 'flow_test_helper'
-require 'gds_api/test_helpers/imminence'
+require_relative "../../test_helper"
+require_relative "flow_test_helper"
+require "gds_api/test_helpers/imminence"
 
 require "smart_answer_flows/benefit-cap-calculator"
 
@@ -11,8 +11,8 @@ class BenefitCapCalculatorTest < ActiveSupport::TestCase
   setup do
     setup_for_testing_flow SmartAnswer::BenefitCapCalculatorFlow
 
-    imminence_has_areas_for_postcode("WC2B%206SE", [{ type: 'EUR', name: 'London', country_name: 'England' }])
-    imminence_has_areas_for_postcode("B1%201PW", [{ type: 'EUR', name: 'West Midlands', country_name: 'England' }])
+    imminence_has_areas_for_postcode("WC2B%206SE", [{ type: "EUR", name: "London", country_name: "England" }])
+    imminence_has_areas_for_postcode("B1%201PW", [{ type: "EUR", name: "West Midlands", country_name: "England" }])
   end
 
   context "Benefit cap calculator" do
@@ -49,8 +49,16 @@ class BenefitCapCalculatorTest < ActiveSupport::TestCase
             assert_current_node :receiving_exemption_benefits?
           end
 
-          context "answer yes" do
-            setup { add_response :yes }
+          context "selects more than one exempt benefit" do
+            setup { add_response "attendance_allowance,war_pensions" }
+
+            should "go to outcome 1" do
+              assert_current_node :outcome_not_affected_exemptions
+            end
+          end
+
+          context "selects at least one exempt benefit" do
+            setup { add_response :attendance_allowance }
 
             should "go to outcome 1" do
               assert_current_node :outcome_not_affected_exemptions
@@ -58,8 +66,8 @@ class BenefitCapCalculatorTest < ActiveSupport::TestCase
           end # Q3 receiving benefits end at Outcome 1
 
           # not receiving exemption benefits from Q3
-          context "answer no" do
-            setup { add_response :no }
+          context "does not select any exempt benefit" do
+            setup { add_response :none }
 
             #Q4
             should "ask if household receiving other benefits" do
@@ -67,7 +75,7 @@ class BenefitCapCalculatorTest < ActiveSupport::TestCase
             end
 
             context "answer receiving additional benefits" do
-              setup { add_response 'incapacity,sda' }
+              setup { add_response "incapacity,sda" }
 
               #Q5f
               should "ask how much for incapacity allowance benefit" do
@@ -112,7 +120,7 @@ class BenefitCapCalculatorTest < ActiveSupport::TestCase
                       end
 
                       context "answer postcode question with London postcode" do
-                        setup { add_response 'WC2B 6SE' }
+                        setup { add_response "WC2B 6SE" }
 
                         should "go to outcome 3" do
                           assert_current_node :outcome_affected_greater_than_cap_london
@@ -120,7 +128,7 @@ class BenefitCapCalculatorTest < ActiveSupport::TestCase
                       end
 
                       context "answer postcode question with Birmingham postcode" do
-                        setup { add_response 'B1 1PW' }
+                        setup { add_response "B1 1PW" }
 
                         should "go to outcome 3" do
                           assert_current_node :outcome_affected_greater_than_cap_national
@@ -133,7 +141,7 @@ class BenefitCapCalculatorTest < ActiveSupport::TestCase
             end #Q4 receiving additional benefits, above cap
 
             context "answer receiving additional benefits" do
-              setup { add_response 'esa,maternity' }
+              setup { add_response "esa,maternity" }
 
               should "ask ask how much for esa benefit" do
                 assert_state_variable :benefit_types, [:maternity]
@@ -164,14 +172,14 @@ class BenefitCapCalculatorTest < ActiveSupport::TestCase
                     end
 
                     context "answer lone parent" do
-                      setup { add_response 'parent' }
+                      setup { add_response "parent" }
 
                       should "ask for postcode" do
                         assert_current_node :enter_postcode?
                       end
 
                       context "answer postcode question with London postcode" do
-                        setup { add_response 'WC2B 6SE' }
+                        setup { add_response "WC2B 6SE" }
 
                         should "go to outcome" do
                           assert_current_node :outcome_not_affected_less_than_cap_london
@@ -179,7 +187,7 @@ class BenefitCapCalculatorTest < ActiveSupport::TestCase
                       end
 
                       context "answer postcode question with Birmingham postcode" do
-                        setup { add_response 'B1 1PW' }
+                        setup { add_response "B1 1PW" }
 
                         should "go to outcome" do
                           assert_current_node :outcome_not_affected_less_than_cap_national
@@ -193,7 +201,7 @@ class BenefitCapCalculatorTest < ActiveSupport::TestCase
 
             # not receiving additional benefits from Q4
             context "no additional benefits selected" do
-              setup { add_response 'none' }
+              setup { add_response "none" }
 
               should "ask for housing benefit amount" do
                 assert_current_node :housing_benefit_amount?
@@ -207,7 +215,7 @@ class BenefitCapCalculatorTest < ActiveSupport::TestCase
                 end
 
                 context "answer lone parent" do
-                  setup { add_response 'parent' }
+                  setup { add_response "parent" }
 
                   should "ask for your postcode" do
                     assert_current_node :enter_postcode?
@@ -246,12 +254,12 @@ class BenefitCapCalculatorTest < ActiveSupport::TestCase
         should "show :outcome_affected_greater_than_cap outcome" do
           add_response :yes
           add_response :no
-          add_response :no
+          add_response :none
           add_response :child_benefit
           add_response "100"
           add_response "400"
           add_response :single
-          add_response 'WC2B 6SE'
+          add_response "WC2B 6SE"
           assert_current_node :outcome_affected_greater_than_cap_london
         end
       end

@@ -1,3 +1,19 @@
+inherit_gem:
+  rubocop-govuk:
+    - config/default.yml
+
 AllCops:
   Exclude:
     - 'tmp/**/*'
+
+Style/CommentedKeyword:
+  Enabled: false
+
+Style/FormatStringToken:
+  Enabled: false
+
+Metrics/BlockLength:
+  Exclude:
+    - 'lib/tasks/**/*.rake'
+    - 'lib/smart_answer_flows/**/*.rb'
+    - 'test/**/*.rb'

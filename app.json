@@ -5,12 +5,19 @@
   "success_url": "/",
   "env": {
     "GOVUK_APP_DOMAIN": "integration.publishing.service.gov.uk",
-    "PLEK_SERVICE_CONTENT_STORE_URI": "https://www-origin.integration.publishing.service.gov.uk/api" ,
-    "PLEK_SERVICE_STATIC_URI": "https://assets-origin.integration.publishing.service.gov.uk/",
+    "GOVUK_WEBSITE_ROOT": "https://www.gov.uk",
+    "PLEK_SERVICE_CONTENT_STORE_URI": "https://www.gov.uk/api" ,
+    "PLEK_SERVICE_STATIC_URI": "https://assets.integration.publishing.service.gov.uk/",
     "RUNNING_ON_HEROKU": "true",
     "EXPOSE_GOVSPEAK": "true",
     "ERRBIT_ENV": "integration"
   },
   "image": "heroku/ruby",
-  "buildpacks": [ { "url": "heroku/ruby" } ]
+  "buildpacks": [ { "url": "heroku/ruby" } ],
+  "formation": {
+    "web": {
+      "quantity": 1,
+      "size": "hobby"
+    }
+  }
 }

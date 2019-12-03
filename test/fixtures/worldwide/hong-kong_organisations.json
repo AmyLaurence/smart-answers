@@ -5,7 +5,7 @@
       "title": "British Consulate General Hong Kong",
       "format": "Worldwide Organisation",
       "updated_at": "2014-04-04T09:09:23.000+01:00",
-      "web_url": "https://www.gov.uk/government/world/organisations/british-consulate-general-hong-kong",
+      "web_url": "https://www.gov.uk/world/organisations/british-consulate-general-hong-kong",
       "details": {
         "slug": "british-consulate-general-hong-kong"
       },
@@ -15,12 +15,12 @@
           "title": "British Consulate-General Hong Kong",
           "format": "World Office",
           "updated_at": "2013-03-25T10:37:53.000+00:00",
-          "web_url": "https://www.gov.uk/government/world/organisations/british-consulate-general-hong-kong/office/british-consulate-general-hong-kong",
+          "web_url": "https://www.gov.uk/world/organisations/british-consulate-general-hong-kong/office/british-consulate-general-hong-kong",
           "details": {
             "email": "",
-            "description": "Opening hours:\r\nMonday to Friday 8:30am to 5:15pm",
-            "contact_form_url": "",
-            "access_and_opening_times": "<div class=\"govspeak\"><h2 id=\"disabled-access\">Disabled access</h2>\n\n<p>Disabled visitors should contact us in advance in case extra assistance is needed, such as wheelchair access. </p>\n\n<p>Telephone: (+852) 2901 3000 </p>\n\n<h2 id=\"public-holidays\">Public holidays</h2>\n\n<h3 id=\"the-british-consulate-general-will-observe-the-following-holidays-in-2016\">The British Consulate-General will observe the following holidays in 2016.</h3>\n\n<table>\n  <tbody>\n    <tr>\n      <td>1 January, Friday</td>\n      <td>The first day of January</td>\n    </tr>\n    <tr>\n      <td>8 February, Monday</td>\n      <td>Lunar New Year’s Day</td>\n    </tr>\n    <tr>\n      <td>9 February, Tuesday</td>\n      <td>The second day of Lunar New Year</td>\n    </tr>\n    <tr>\n      <td>10 February, Wednesday</td>\n      <td>The third day of Lunar New Year</td>\n    </tr>\n    <tr>\n      <td>25 March, Friday</td>\n      <td>Good Friday</td>\n    </tr>\n    <tr>\n      <td>28 March, Monday</td>\n      <td>Easter Monday</td>\n    </tr>\n    <tr>\n      <td>4 April, Monday</td>\n      <td>Ching Ming Festival</td>\n    </tr>\n    <tr>\n      <td>2 May, Monday</td>\n      <td>The day following Labour Day</td>\n    </tr>\n    <tr>\n      <td>9 June, Thursday</td>\n      <td>Tuen Ng Festival</td>\n    </tr>\n    <tr>\n      <td>1 July, Friday</td>\n      <td>Hong Kong Special Administrative Region Establishment Day</td>\n    </tr>\n    <tr>\n      <td>16 September, Friday</td>\n      <td>The day following the Chinese Mid-Autumn Festival</td>\n    </tr>\n    <tr>\n      <td>10 October, Monday</td>\n      <td>The day following the Chung Yeung Festival</td>\n    </tr>\n    <tr>\n      <td>26 December, Monday</td>\n      <td>Boxing Day</td>\n    </tr>\n    <tr>\n      <td>27 December, Tuesday</td>\n      <td>Day in lieu of Christmas Day</td>\n    </tr>\n  </tbody>\n</table>\n</div>",
+            "description": "Opening hours:\r\nThe British Consulate-General is open Monday to Friday 8:30am to 5:15pm\r\n\r\n\r\nThe Consular section public counters open Monday, Tuesday, Thursday and Friday, 9:00am to 2:00pm. All personal callers must make an appointment via our online system, or by phoning (+852) 2901 3000 in advance.       \r\n\r\nConsular telephone enquiries operate Monday to Thursday, 9:00am to 4:30pm and Friday 9:00am to 4:15pm. \r\n",
+            "contact_form_url": "https://www.contact-embassy.service.gov.uk/?country=China&post=British%20Consulate%20General%20Hong%20Kong",
+            "access_and_opening_times": "<div class=\"govspeak\"><h2 id=\"disabled-access\">Disabled access</h2>\n\n<p>Disabled visitors should contact us in advance in case extra assistance is needed, such as wheelchair access.</p>\n\n<p>Telephone: (+852) 2901 3000</p>\n\n<h2 id=\"public-holidays\">Public holidays</h2>\n\n<h3 id=\"the-british-consulate-general-will-observe-the-following-holidays-in-2018\">The British Consulate-General will observe the following holidays in 2018:</h3>\n\n<table>\n  <tbody>\n    <tr>\n      <td>1 January, Monday</td>\n      <td>The first day of January</td>\n    </tr>\n    <tr>\n      <td>16 February, Friday</td>\n      <td>Lunar New Year’s Day</td>\n    </tr>\n    <tr>\n      <td>19 February, Monday</td>\n      <td>The fourth day of Lunar New Year</td>\n    </tr>\n    <tr>\n      <td>30 March, Friday</td>\n      <td>Good Friday</td>\n    </tr>\n    <tr>\n      <td>2 April, Monday</td>\n      <td>Easter Monday</td>\n    </tr>\n    <tr>\n      <td>5 April, Thursday</td>\n      <td>Ching Ming Festival</td>\n    </tr>\n    <tr>\n      <td>1 May, Tuesday</td>\n      <td>Labour Day</td>\n    </tr>\n    <tr>\n      <td>18 June, Monday</td>\n      <td>Tuen Ng Festival</td>\n    </tr>\n    <tr>\n      <td>2 July, Monday</td>\n      <td>The day following HKSAR Establishment Day</td>\n    </tr>\n    <tr>\n      <td>25 September, Tuesday</td>\n      <td>The day following Chinese Mid-Autumn Festival</td>\n    </tr>\n    <tr>\n      <td>1 October, Monday</td>\n      <td>National Day</td>\n    </tr>\n    <tr>\n      <td>17 October, Wednesday</td>\n      <td>Chung Yeung Festival</td>\n    </tr>\n    <tr>\n      <td>25 December, Tuesday</td>\n      <td>Christmas Day</td>\n    </tr>\n    <tr>\n      <td>26 December, Wednesday</td>\n      <td>Boxing Day</td>\n    </tr>\n  </tbody>\n</table>\n\n</div>",
             "type": "Consulate"
           },
           "address": {
@@ -44,6 +44,14 @@
             {
               "label": "Fax",
               "number": "(+852) 2901 3008"
+            },
+            {
+              "label": "Consular fax",
+              "number": "(+852) 2901 3204"
+            },
+            {
+              "label": "Out of office hours Consular Emergency Service",
+              "number": " (+852) 2901 3000"
             }
           ],
           "services": [
@@ -74,68 +82,7 @@
           ]
         },
         "other": [
-          {
-            "title": "Consular section",
-            "format": "World Office",
-            "updated_at": "2013-03-25T10:37:54.000+00:00",
-            "web_url": "https://www.gov.uk/government/world/organisations/british-consulate-general-hong-kong/office/consular-section",
-            "details": {
-              "email": "",
-              "description": "Opening hours:\r\nMonday, Tuesday, Thursday and Friday, 9:00am to 2:00pm for personal callers; \r\nMonday to Thursday, 9:00am to 4:30pm and Friday, 9:00am to 4:15pm for telephone enquiries.\r\n\r\nThe consular section is closed to personal callers every Wednesday from 4 November 2015. Find out why we have made this change at https://www.gov.uk/government/world-location-news/changing-how-we-deliver-consular-services-in-hong-kong.",
-              "contact_form_url": "",
-              "access_and_opening_times": "<div class=\"govspeak\"><h2 id=\"disabled-access\">Disabled access</h2>\n\n<p>Disabled visitors should contact us in advance in case extra assistance is needed, such as wheelchair access. </p>\n\n<p>Telephone: (+852) 2901 3000 </p>\n\n<h2 id=\"public-holidays\">Public holidays</h2>\n\n<h3 id=\"the-british-consulate-general-will-observe-the-following-holidays-in-2016\">The British Consulate-General will observe the following holidays in 2016.</h3>\n\n<table>\n  <tbody>\n    <tr>\n      <td>1 January, Friday</td>\n      <td>The first day of January</td>\n    </tr>\n    <tr>\n      <td>8 February, Monday</td>\n      <td>Lunar New Year’s Day</td>\n    </tr>\n    <tr>\n      <td>9 February, Tuesday</td>\n      <td>The second day of Lunar New Year</td>\n    </tr>\n    <tr>\n      <td>10 February, Wednesday</td>\n      <td>The third day of Lunar New Year</td>\n    </tr>\n    <tr>\n      <td>25 March, Friday</td>\n      <td>Good Friday</td>\n    </tr>\n    <tr>\n      <td>28 March, Monday</td>\n      <td>Easter Monday</td>\n    </tr>\n    <tr>\n      <td>4 April, Monday</td>\n      <td>Ching Ming Festival</td>\n    </tr>\n    <tr>\n      <td>2 May, Monday</td>\n      <td>The day following Labour Day</td>\n    </tr>\n    <tr>\n      <td>9 June, Thursday</td>\n      <td>Tuen Ng Festival</td>\n    </tr>\n    <tr>\n      <td>1 July, Friday</td>\n      <td>Hong Kong Special Administrative Region Establishment Day</td>\n    </tr>\n    <tr>\n      <td>16 September, Friday</td>\n      <td>The day following the Chinese Mid-Autumn Festival</td>\n    </tr>\n    <tr>\n      <td>10 October, Monday</td>\n      <td>The day following the Chung Yeung Festival</td>\n    </tr>\n    <tr>\n      <td>26 December, Monday</td>\n      <td>Boxing Day</td>\n    </tr>\n    <tr>\n      <td>27 December, Tuesday</td>\n      <td>Day in lieu of Christmas Day</td>\n    </tr>\n  </tbody>\n</table>\n</div>",
-              "type": "Other"
-            },
-            "address": {
-              "adr": {
-                "fn": "",
-                "street-address": "",
-                "postal-code": "",
-                "locality": "",
-                "region": "",
-                "country-name": ""
-              },
-              "label": {
-                "value": ""
-              }
-            },
-            "contact_numbers": [
-              {
-                "label": "Telephone",
-                "number": "(+852) 2901 3000"
-              },
-              {
-                "label": "Fax",
-                "number": "(+852) 2901 3204"
-              },
-              {
-                "label": "Email",
-                "number": "hongkong.consular@fco.gov.uk"
-              },
-              {
-                "label": "Out of office hours Consular Emergency Service",
-                "number": "(+852) 2901 3000 "
-              }
-            ],
-            "services": [
-              {
-                "title": "Emergency Travel Documents service",
-                "type": "Assistance Services"
-              },
-              {
-                "title": "Transferring funds for prisoners / for financial assistance service",
-                "type": "Assistance Services"
-              },
-              {
-                "title": "Notarial services",
-                "type": "Documentary Services"
-              },
-              {
-                "title": "Citizenship Ceremony service",
-                "type": "Documentary Services"
-              }
-            ]
-          }
+
         ]
       },
       "sponsors": [
@@ -149,23 +96,23 @@
       ]
     },
     {
-      "id": "https://www.gov.uk/api/worldwide-organisations/uk-trade-investment-hong-kong",
-      "title": "UK Trade & Investment Hong Kong",
+      "id": "https://www.gov.uk/api/worldwide-organisations/department-for-international-trade-hong-kong",
+      "title": "Department for International Trade Hong Kong",
       "format": "Worldwide Organisation",
-      "updated_at": "2014-04-24T15:59:52.000+01:00",
-      "web_url": "https://www.gov.uk/government/world/organisations/uk-trade-investment-hong-kong",
+      "updated_at": "2018-05-29T13:31:00.000+01:00",
+      "web_url": "https://www.gov.uk/world/organisations/department-for-international-trade-hong-kong",
       "details": {
-        "slug": "uk-trade-investment-hong-kong"
+        "slug": "department-for-international-trade-hong-kong"
       },
       "analytics_identifier": "WO170",
       "offices": {
         "main": {
-          "title": "UK Trade & Investment Hong Kong",
+          "title": "Department for International Trade Hong Kong",
           "format": "World Office",
           "updated_at": "2013-03-25T10:37:53.000+00:00",
-          "web_url": "https://www.gov.uk/government/world/organisations/uk-trade-investment-hong-kong/office/uk-trade-investment-hong-kong",
+          "web_url": "https://www.gov.uk/world/organisations/department-for-international-trade-hong-kong/office/uk-trade-investment-hong-kong",
           "details": {
-            "email": "commercial@bcg.org.hk",
+            "email": "DITHongKong@fco.gov.uk",
             "description": "",
             "contact_form_url": "",
             "access_and_opening_times": "",
@@ -200,10 +147,10 @@
       },
       "sponsors": [
         {
-          "title": "UK Trade & Investment",
-          "web_url": "https://www.gov.uk/government/organisations/uk-trade-investment",
+          "title": "Department for International Trade",
+          "web_url": "https://www.gov.uk/government/organisations/department-for-international-trade",
           "details": {
-            "acronym": "UKTI"
+            "acronym": "DIT"
           }
         }
       ]

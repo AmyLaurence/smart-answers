@@ -5,7 +5,7 @@ module SmartAnswer::Calculators
     setup do
       StatePensionTopupDataQuery
         .stubs(:age_and_rates_data)
-        .returns('age_and_rates' => { 100 => 127, 99 => 137 })
+        .returns("age_and_rates" => { 100 => 127, 99 => 137 })
       @query = StatePensionTopupDataQuery.new
     end
 
@@ -18,7 +18,7 @@ module SmartAnswer::Calculators
     end
 
     should "return nil for uncovered age ranges" do
-      assert_equal nil, @query.age_and_rates(61)
+      assert_nil @query.age_and_rates(61)
     end
   end
 end

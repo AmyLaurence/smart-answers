@@ -1,4 +1,4 @@
-require 'node_presenter'
+require "node_presenter"
 
 class FlowPresenter
   extend Forwardable
@@ -64,7 +64,7 @@ class FlowPresenter
                       else
                         NodePresenter
                       end
-    @node_presenters[node.name] ||= presenter_class.new(node, current_state)
+    @node_presenters[node.name] ||= presenter_class.new(node, current_state, {}, params)
   end
 
   def current_question_number
@@ -83,9 +83,9 @@ class FlowPresenter
   def change_collapsed_question_link(question_number)
     smart_answer_path(
       id: @params[:id],
-      started: 'y',
+      started: "y",
       responses: accepted_responses[0...question_number - 1],
-      previous_response: accepted_responses[question_number - 1]
+      previous_response: accepted_responses[question_number - 1],
     )
   end
 
@@ -96,7 +96,7 @@ class FlowPresenter
     when Array
       params[:responses]
     else
-      params[:responses].to_s.split('/')
+      params[:responses].to_s.split("/")
     end
   end
 

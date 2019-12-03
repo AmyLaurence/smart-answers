@@ -4,19 +4,19 @@ module SmartAnswer::Calculators
     attr_writer :resident_of
     attr_writer :partner_nationality
     attr_writer :sex_of_your_partner
-    attr_writer :marriage_or_pacs
+    attr_accessor :marriage_or_pacs
 
     def initialize(data_query: nil, rates_query: nil, country_name_formatter: nil, registrations_data_query: nil, services_data: nil)
       @data_query = data_query || MarriageAbroadDataQuery.new
-      @rates_query = rates_query || RatesQuery.from_file('marriage_abroad_consular_fees')
+      @rates_query = rates_query || RatesQuery.from_file("marriage_abroad_consular_fees")
       @country_name_formatter = country_name_formatter || CountryNameFormatter.new
       @registrations_data_query = registrations_data_query || RegistrationsDataQuery.new
-      services_data_file = Rails.root.join('lib', 'data', 'marriage_abroad_services.yml')
+      services_data_file = Rails.root.join("lib", "data", "marriage_abroad_services.yml")
       @services_data = services_data || YAML.load_file(services_data_file)
     end
 
     def partner_british?
-      @partner_nationality == 'partner_british'
+      @partner_nationality == "partner_british"
     end
 
     def partner_not_british?
@@ -24,7 +24,7 @@ module SmartAnswer::Calculators
     end
 
     def partner_is_national_of_ceremony_country?
-      @partner_nationality == 'partner_local'
+      @partner_nationality == "partner_local"
     end
 
     def partner_is_not_national_of_ceremony_country?
@@ -32,11 +32,11 @@ module SmartAnswer::Calculators
     end
 
     def partner_is_neither_british_nor_a_national_of_ceremony_country?
-      @partner_nationality == 'partner_other'
+      @partner_nationality == "partner_other"
     end
 
     def resident_of_uk?
-      @resident_of == 'uk'
+      @resident_of == "uk"
     end
 
     def resident_outside_of_uk?
@@ -44,7 +44,7 @@ module SmartAnswer::Calculators
     end
 
     def resident_of_ceremony_country?
-      @resident_of == 'ceremony_country'
+      @resident_of == "ceremony_country"
     end
 
     def resident_outside_of_ceremony_country?
@@ -52,7 +52,7 @@ module SmartAnswer::Calculators
     end
 
     def resident_of_third_country?
-      @resident_of == 'third_country'
+      @resident_of == "third_country"
     end
 
     def resident_outside_of_third_country?
@@ -60,15 +60,15 @@ module SmartAnswer::Calculators
     end
 
     def partner_is_opposite_sex?
-      @sex_of_your_partner == 'opposite_sex'
+      @sex_of_your_partner == "opposite_sex"
     end
 
     def partner_is_same_sex?
-      @sex_of_your_partner == 'same_sex'
+      @sex_of_your_partner == "same_sex"
     end
 
     def want_to_get_married?
-      @marriage_or_pacs == 'marriage'
+      @marriage_or_pacs == "marriage"
     end
 
     def world_location
@@ -89,7 +89,7 @@ module SmartAnswer::Calculators
 
     def overseas_passports_embassies
       if fco_organisation
-        fco_organisation.offices_with_service 'Registrations of Marriage and Civil Partnerships'
+        fco_organisation.offices_with_service "Registrations of Marriage and Civil Partnerships"
       else
         []
       end
@@ -97,17 +97,17 @@ module SmartAnswer::Calculators
 
     def marriage_and_partnership_phrases
       if same_sex_marriage_country? || same_sex_marriage_country_when_couple_british?
-        'ss_marriage'
+        "ss_marriage"
       elsif same_sex_marriage_and_civil_partnership?
-        'ss_marriage_and_partnership'
+        "ss_marriage_and_partnership"
       end
     end
 
     def italian_marriage_and_partnership_phrase
       if partner_is_same_sex?
-        'civil partnership'
+        "civil partnership"
       else
-        'marriage'
+        "marriage"
       end
     end
 
@@ -127,13 +127,13 @@ module SmartAnswer::Calculators
 
     def country_name_partner_residence
       if ceremony_country_is_british_overseas_territory?
-        'British (overseas territories citizen)'
+        "British (overseas territories citizen)"
       elsif ceremony_country_is_french_overseas_territory?
-        'French'
+        "French"
       elsif ceremony_country_is_dutch_caribbean_island?
-        'Dutch'
+        "Dutch"
       elsif %w(hong-kong macao).include?(ceremony_country)
-        'Chinese'
+        "Chinese"
       else
         "National of #{country_name_lowercase_prefix}"
       end
@@ -141,9 +141,9 @@ module SmartAnswer::Calculators
 
     def embassy_or_consulate_ceremony_country
       if @registrations_data_query.has_consulate?(ceremony_country) || @registrations_data_query.has_consulate_general?(ceremony_country)
-        'consulate'
+        "consulate"
       else
-        'embassy'
+        "embassy"
       end
     end
 
@@ -243,20 +243,12 @@ module SmartAnswer::Calculators
       @data_query.ss_alt_fees_table_country?(ceremony_country, self)
     end
 
-    def civil_partnership_institution_name
-      if ceremony_country == 'cyprus'
-        'High Commission'
-      else
-        'British embassy or consulate'
-      end
-    end
-
     def outcome_path_when_resident_in_uk
-      outcome_path_when_resident_in('uk')
+      outcome_path_when_resident_in("uk")
     end
 
     def outcome_path_when_resident_in_ceremony_country
-      outcome_path_when_resident_in('ceremony_country')
+      outcome_path_when_resident_in("ceremony_country")
     end
 
     def three_day_residency_requirement_applies?
@@ -268,7 +260,7 @@ module SmartAnswer::Calculators
     end
 
     def birth_certificate_required_as_supporting_document?
-      MarriageAbroadDataQuery::NO_BIRTH_CERT_REQUIREMENT.exclude?(ceremony_country)
+      MarriageAbroadDataQuery::THREE_DAY_RESIDENCY_REQUIREMENT_COUNTRIES.exclude?(ceremony_country)
     end
 
     def notary_public_ceremony_country?
@@ -280,10 +272,10 @@ module SmartAnswer::Calculators
     end
 
     def diplomatic_mission
-      if ceremony_country == 'australia'
-        'High Commission'
+      if ceremony_country == "australia"
+        "High Commission"
       else
-        'embassy'
+        "embassy"
       end
     end
 
@@ -295,13 +287,13 @@ module SmartAnswer::Calculators
       if services_for_country_and_partner_sex_and_residency_and_partner_nationality?
         @services_data[ceremony_country][@sex_of_your_partner][@resident_of][@partner_nationality]
       elsif services_for_country_and_partner_sex_and_default_residency_and_partner_nationality?
-        @services_data[ceremony_country][@sex_of_your_partner]['default'][@partner_nationality]
+        @services_data[ceremony_country][@sex_of_your_partner]["default"][@partner_nationality]
       elsif services_for_country_and_partner_sex_and_residency_and_default_partner_nationality?
-        @services_data[ceremony_country][@sex_of_your_partner][@resident_of]['default']
+        @services_data[ceremony_country][@sex_of_your_partner][@resident_of]["default"]
       elsif services_for_country_and_partner_sex_and_default_residency_and_default_nationality?
-        @services_data[ceremony_country][@sex_of_your_partner]['default']['default']
+        @services_data[ceremony_country][@sex_of_your_partner]["default"]["default"]
       elsif services_data_for_country_and_default_partner_sex?
-        @services_data[ceremony_country]['default']
+        @services_data[ceremony_country]["default"]
       else
         []
       end
@@ -309,11 +301,83 @@ module SmartAnswer::Calculators
 
     def services_payment_partial_name
       if services_data_for_ceremony_country?
-        @services_data[ceremony_country]['payment_partial_name']
+        @services_data[ceremony_country]["payment_partial_name"]
       end
     end
 
+    def path_to_outcome
+      if outcome_ceremony_location_country?
+        [ceremony_country, ceremony_location_path_name]
+      elsif one_question_country?
+        [ceremony_country, ceremony_country]
+      elsif two_questions_country?
+        [ceremony_country, marriage_type_path_name]
+      elsif two_questions_country_marriage_or_pacs?
+        [ceremony_country, @marriage_or_pacs]
+      elsif three_questions_country?
+        [ceremony_country, ceremony_location_path_name, marriage_type_path_name]
+      elsif four_questions_country?
+        [ceremony_country, ceremony_location_path_name, partner_nationality_path_name, marriage_type_path_name]
+      end
+    end
+
+    def has_outcome_per_path?
+      @data_query.outcome_per_path_countries.include?(ceremony_country)
+    end
+
+    def outcome_ceremony_location_country?
+      @data_query.countries_with_ceremony_location_outcomes.include?(ceremony_country)
+    end
+
+    def one_question_country?
+      @data_query.countries_with_1_outcome.include?(ceremony_country)
+    end
+
+    def two_questions_country?
+      @data_query.countries_with_2_outcomes.include?(ceremony_country)
+    end
+
+    def two_questions_country_marriage_or_pacs?
+      @data_query.countries_with_2_outcomes_marriage_or_pacs.include?(ceremony_country)
+    end
+
+    def three_questions_country?
+      @data_query.countries_with_6_outcomes.include?(ceremony_country)
+    end
+
+    def four_questions_country?
+      @data_query.countries_with_18_outcomes.include?(ceremony_country)
+    end
+
   private
+
+    def marriage_type_path_name
+      if partner_is_same_sex?
+        "same_sex"
+      else
+        "opposite_sex"
+      end
+    end
+
+    def partner_nationality_path_name
+      if partner_is_national_of_ceremony_country?
+        "partner_local"
+      elsif partner_british?
+        "partner_british"
+      else
+        "partner_other"
+      end
+    end
+
+    def ceremony_location_path_name
+      if resident_of_ceremony_country?
+        "ceremony_country"
+      elsif resident_of_third_country?
+        "third_country"
+      else
+        "uk"
+      end
+    end
 
     def services_for_country_and_partner_sex_and_residency_and_partner_nationality?
       services_data_for_country_and_partner_sex_and_residency? &&
@@ -322,19 +386,19 @@ module SmartAnswer::Calculators
 
     def services_for_country_and_partner_sex_and_default_residency_and_partner_nationality?
       services_data_for_country_and_partner_sex? &&
-        @services_data[ceremony_country][@sex_of_your_partner].has_key?('default') &&
-        @services_data[ceremony_country][@sex_of_your_partner]['default'].has_key?(@partner_nationality)
+        @services_data[ceremony_country][@sex_of_your_partner].has_key?("default") &&
+        @services_data[ceremony_country][@sex_of_your_partner]["default"].has_key?(@partner_nationality)
     end
 
     def services_for_country_and_partner_sex_and_residency_and_default_partner_nationality?
       services_data_for_country_and_partner_sex_and_residency? &&
-        @services_data[ceremony_country][@sex_of_your_partner][@resident_of].has_key?('default')
+        @services_data[ceremony_country][@sex_of_your_partner][@resident_of].has_key?("default")
     end
 
     def services_for_country_and_partner_sex_and_default_residency_and_default_nationality?
       services_data_for_country_and_partner_sex? &&
-        @services_data[ceremony_country][@sex_of_your_partner].has_key?('default') &&
-        @services_data[ceremony_country][@sex_of_your_partner]['default'].has_key?('default')
+        @services_data[ceremony_country][@sex_of_your_partner].has_key?("default") &&
+        @services_data[ceremony_country][@sex_of_your_partner]["default"].has_key?("default")
     end
 
     def services_data_for_country_and_partner_sex_and_residency?
@@ -349,7 +413,7 @@ module SmartAnswer::Calculators
 
     def services_data_for_country_and_default_partner_sex?
       services_data_for_ceremony_country? &&
-        @services_data[ceremony_country].has_key?('default')
+        @services_data[ceremony_country].has_key?("default")
     end
 
     def services_data_for_ceremony_country?
@@ -358,10 +422,10 @@ module SmartAnswer::Calculators
 
     def outcome_path_when_resident_in(uk_or_ceremony_country)
       [
-        '', 'marriage-abroad', 'y',
+        "", "marriage-abroad", "y",
         @ceremony_country, uk_or_ceremony_country,
         @partner_nationality, @sex_of_your_partner
-      ].join('/')
+      ].join("/")
     end
   end
 end
